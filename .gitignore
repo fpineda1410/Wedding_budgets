@@ -1,8 +1,8 @@
-# ignore all files starting with .
-.*
+
+.env
 *.db
 # track this file .gitignore (i.e. do NOT ignore it)
-!.gitignore
+
 !.github
 php_errorlog
 .log
@@ -20,6 +20,8 @@ migrations/
 
 # track readme.md in the root (i.e. do NOT ignore it)
 !README.md
+!.babelrc
+!.env.example
 
 # ignore OS generated files
 ehthumbs.db
@@ -66,7 +68,7 @@ public/
 !.gitkeep
 !.htaccess
 !.eslintrc
-!.env.example
+
 .now
 
 # backend stuff
