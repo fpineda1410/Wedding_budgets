@@ -2,12 +2,12 @@
   "name": "NPM_WEBPACK",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpacl --mode production",
     "local_start": "webpack serve --open --mode development",
-    "start": "webpack-dev-server --config webpack.dev.js --port 3010"
+    "start": "webpack-dev-server --config webpack.dev.js --port 3000"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +18,13 @@
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.1",
+    "dotenv-webpack": "^7.0.2",
     "html-webpack-plugin": "^5.3.1",
     "less": "^4.1.1",
     "less-loader": "^8.1.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.33.2",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
   },
@@ -33,7 +35,6 @@
     "rc-queue-anim": "^1.6.10",
     "rc-scroll-anim": "^2.7.6",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "webpack-cli": "^4.6.0"
+    "react-dom": "^17.0.2"
   }
 }

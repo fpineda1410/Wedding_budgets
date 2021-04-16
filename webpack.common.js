@@ -1,12 +1,14 @@
 const HtmlWebPackPlugin = require ("html-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 const path = require ("path");
 
 module.exports = {
-    entry:"./src/Index.jsx",
+    entry:"./src/index.jsx",
     output: {
         path: path.resolve(__dirname,"dist"),
         filename: "bundle.js",
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -38,5 +40,8 @@ module.exports = {
 
     }]
 },
-    plugins: [new HtmlWebPackPlugin ({template:"./src/index.html"})]
+    plugins: [new HtmlWebPackPlugin ({template:"./src/index.html"}),
+    new Dotenv({ safe: true, systemvars: true })
+
+]
 };
