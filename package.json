@@ -2,12 +2,13 @@
   "name": "NPM_WEBPACK",
   "version": "1.0.0",
   "description": "",
-  "main": "index.jsx",
+  "main": "index.js",
   "scripts": {
+    "watch":"webpack serve --open --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpacl --mode production",
     "local_start": "webpack serve --open --mode development",
-    "start": "webpack-dev-server --config webpack.dev.js --port 3000"
+    "start": "webpack serve --open --mode development"
   },
   "keywords": [],
   "author": "",

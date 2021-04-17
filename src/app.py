@@ -10,7 +10,6 @@ from api.utils import APIException, generate_sitemap
 from api.models import db,User
 from api.routes import api
 from api.admin import setup_admin
-
 from flask_jwt_extended import JWTManager
 
 
