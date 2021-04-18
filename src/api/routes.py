@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User,Color,FavoriteColor
+from api.models import db, User, Service1, Service2, Service3, Service4,BudgetItems
 from api.utils import generate_sitemap, APIException
 import requests
 
@@ -20,18 +20,21 @@ from datetime import timedelta
 
 api = Blueprint('api', __name__)
 
+#AQUI LUIS TIENE QUE VER LO SIGUIENTE
+#VER QUE INFORMACION VA A SUBIR
+#
+
 
 #* This method injects data to the database before receiving any foreign requests
 @api.before_app_first_request
-def characters_load():
-    pass
-    # user=User()
-    # user.username="example_user"
-    # user.email="example_email"
-    # user.password="example_password"
-    # user.is_active=True
-    # db.session.add(user)
-    # db.session.commit()
+# def characters_load():
+#     user=User()
+#     user.username="example_user"
+#     user.email="example_email"
+#     user.password="example_password"
+#     user.is_active=True
+#     db.session.add(user)
+#     db.session.commit()
 
 @api.route('/create-account', methods=['POST'])
 def create_account():
@@ -45,7 +48,7 @@ def create_account():
         return "Empty email", 400
     if 'password' not in body:
         return "Empty password", 400
-
+#todo modificar como se registra el usuario
     user=User()
     user.username=body['username']
     user.email=body['email']
@@ -57,9 +60,10 @@ def create_account():
     response_body = {
         "msg": "Added user"
     }
-
     return jsonify(response_body), 200
+#todo modificar como se registra el usuario
 
+#todo modificar como se loggea el usuario
 @api.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username", None)
@@ -73,7 +77,7 @@ def login():
     access_token = create_access_token(identity=user, expires_delta=expiration)
 
     return jsonify(access_token=access_token)
-
+#todo modificar como se loggea el usuario
 
 @api.route("/get-user-data" , methods=["GET"])
 @jwt_required()
@@ -94,6 +98,8 @@ def update_data_user():
     
 
 
+
+
 #!----Just use for debugging purposes
 @api.route("/user_identity", methods=["GET"])
 @jwt_required()
@@ -105,3 +111,30 @@ def protected():
         full_name=current_user.email,
         username=current_user.username,
     )
+
+@api.route("/service1" , methods=["GET"])
+def get_serv1():    
+    return jsonify(Service1.getAllService()), 200
+
+@api.route("/service2" , methods=["GET"])
+def get_serv2():   
+    return jsonify(Service2.getAllService()), 200
+
+@api.route("/service3" , methods=["GET"])
+def get_serv3():    
+    return jsonify(Service3.getAllService()), 200
+
+@api.route("/service4" , methods=["GET"])
+def get_serv4():    
+    return jsonify(Service4.getAllService()), 200
+
+@api.route("/all" , methods=["GET"])
+def get_all():
+    allService = {
+        "flower": Service1.getAllService(),
+        "salon": Service2.getAllService(),
+        "meal": Service3.getAllService(),
+        "photo": Service4.getAllService()
+    }
+    return jsonify(allService), 200
+
