@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Service1, Service2, Service3, Service4,BudgetItems
+from api.models import db, User, Service1, Service2, Service3,BudgetItems
 from api.utils import generate_sitemap, APIException
 import requests
 
@@ -95,10 +95,19 @@ def update_data_user():
     user_payload=request.get_json()
     # updated_information=update_favorites_lists(user_payload,current_user.id)
     # return jsonify("Succesfully updated databases", updated_information), 200
-    
 
+@api.route("/get-budget" , methods=["GET"])
+@jwt_required()
+def get_budget():
+    merged_lists=get_merged_lists(current_user.id)
+    return jsonify(merged_lists), 200
 
-
+@api.route("/update-budget" , methods=["POST"])
+@jwt_required()
+def update_budget_sm():
+    user_payload=request.get_json()
+    updated_lists=update_favorites_lists(user_payload,current_user.id)
+    return jsonify("Succesfully updated databases", updated_lists), 200
 
 #!----Just use for debugging purposes
 @api.route("/user_identity", methods=["GET"])
@@ -112,29 +121,153 @@ def protected():
         username=current_user.username,
     )
 
-@api.route("/service1" , methods=["GET"])
+@api.route("/service1" , methods=['POST','GET'])
 def get_serv1():    
-    return jsonify(Service1.getAllService()), 200
+    if request.method == 'POST':
+        body = request.get_json()
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        
+        service = Service1()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
 
-@api.route("/service2" , methods=["GET"])
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
+
+        return jsonify({"msg": "Well done. Your POSTED a service"}), 200
+
+    elif request.method == 'GET':  
+        return jsonify(Service1.getAllService()), 200
+
+@api.route("/service2" , methods=['POST','GET'])
 def get_serv2():   
-    return jsonify(Service2.getAllService()), 200
+    if request.method == 'POST':
+        body = request.get_json()
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        
+        service = Service2()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
 
-@api.route("/service3" , methods=["GET"])
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
+
+        return jsonify({"msg": "Well done. Your POSTED a service"}), 200
+
+    elif request.method == 'GET':  
+        return jsonify(Service2.getAllService()), 200
+
+@api.route("/service3" , methods=['POST','GET'])
 def get_serv3():    
-    return jsonify(Service3.getAllService()), 200
+    if request.method == 'POST':
+        body = request.get_json()
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        
+        service = Service3()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
 
-@api.route("/service4" , methods=["GET"])
-def get_serv4():    
-    return jsonify(Service4.getAllService()), 200
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
 
-@api.route("/all" , methods=["GET"])
-def get_all():
-    allService = {
-        "flower": Service1.getAllService(),
-        "salon": Service2.getAllService(),
-        "meal": Service3.getAllService(),
-        "photo": Service4.getAllService()
-    }
-    return jsonify(allService), 200
+        return jsonify({"msg": "Well done. Your POSTED a service"}), 200
+
+    elif request.method == 'GET':  
+        return jsonify(Service3.getAllService()), 200
+
+@api.route('/user', methods=['POST','GET'])
+def handle_user():
+    if request.method == 'POST':
+        body = request.get_json()
+        if body is None:
+            return "The request body is null", 400
+        if 'email' not in body:
+            return "You need to specify the email", 400
+        if 'username' not in body:
+            return "You need to specify the username", 400
+        if 'name' not in body:
+            return "You need to specify the name", 400
+        if 'last_name' not in body:
+            return "You need to specify the last_name", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'password' not in body:
+            return "You need to specify the password", 400
+        
+        user = User()
+        user.email = body['email']
+        user.username = body['username']
+        user.name = body['name']
+        user.last_name = body['last_name']
+        user.phone = body['phone']
+        user.password = body['password']
+        user.is_active = True
+
+        db.session.add(user) # agrega el usuario a la base de datos
+        db.session.commit() # guarda los cambios
+
+        response_body = {
+            "msg": "Well done. Your POSTED an User"
+        }
+
+        return jsonify(response_body), 200
+    
+    elif request.method == 'GET':
+        all_user = User.query.all()
+        all_user = list(map(lambda x: x.serialize(), all_user))
+
+
+        return jsonify(all_user), 200
+
+# @api.route("/all" , methods=["GET"])
+# def get_all():
+#     allService = {
+#         "flower": Service1.getAllService(),
+#         "location": Service2.getAllService(),
+#         "photo": Service3.getAllService(),
+#         "music": Service4.getAllService()
+#     }
+#     return jsonify(allService), 200
 

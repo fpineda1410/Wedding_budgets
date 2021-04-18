@@ -32,7 +32,7 @@ class User(db.Model):
 class Service1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category=db.Column(db.String(100))
-    brand=db.Column(db.String(100))
+    #brand=db.Column(db.String(100))
     description=db.Column(db.String(100))
     provider=db.Column(db.String(100))
     phone=db.Column(db.String(100))
@@ -48,7 +48,7 @@ class Service1(db.Model):
         return {
             "id": self.id,
             "category": self.category,
-            "brand": self.brand,
+            #"brand": self.brand,
             "description": self.description,
             "provider": self.provider,
             "phone": self.phone,
@@ -58,7 +58,7 @@ class Service1(db.Model):
 class Service2(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category=db.Column(db.String(100))
-    brand=db.Column(db.String(100))
+    #brand=db.Column(db.String(100))
     description=db.Column(db.String(100))
     provider=db.Column(db.String(100))
     phone=db.Column(db.String(100))
@@ -74,7 +74,7 @@ class Service2(db.Model):
         return {
             "id": self.id,
             "category": self.category,
-            "brand": self.brand,
+            #"brand": self.brand,
             "description": self.description,
             "provider": self.provider,
             "phone": self.phone,
@@ -84,7 +84,7 @@ class Service2(db.Model):
 class Service3(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category=db.Column(db.String(100))
-    brand=db.Column(db.String(100))
+    #brand=db.Column(db.String(100))
     description=db.Column(db.String(100))
     provider=db.Column(db.String(100))
     phone=db.Column(db.String(100))
@@ -100,38 +100,38 @@ class Service3(db.Model):
         return {
             "id": self.id,
             "category": self.category,
-            "brand": self.brand,
+            #"brand": self.brand,
             "description": self.description,
             "provider": self.provider,
             "phone": self.phone,
             "price": self.price,
         }
 
-class Service4(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    category=db.Column(db.String(100))
-    brand=db.Column(db.String(100))
-    description=db.Column(db.String(100))
-    provider=db.Column(db.String(100))
-    phone=db.Column(db.String(100))
-    price=db.Column(db.Integer)
-    budget_relationship=db.relationship('BudgetItems',backref='service4',lazy=True)
+# class Service4(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     category=db.Column(db.String(100))
+#     #brand=db.Column(db.String(100))
+#     description=db.Column(db.String(100))
+#     provider=db.Column(db.String(100))
+#     phone=db.Column(db.String(100))
+#     price=db.Column(db.Integer)
+#     budget_relationship=db.relationship('BudgetItems',backref='service4',lazy=True)
 
-    def getAllService():
-        list_serv = Service4.query.all()
-        list_serv = list(map(lambda x: x.serialize(), list_serv))
-        return(list_serv)
+#     def getAllService():
+#         list_serv = Service4.query.all()
+#         list_serv = list(map(lambda x: x.serialize(), list_serv))
+#         return(list_serv)
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "category": self.category,
-            "brand": self.brand,
-            "description": self.description,
-            "provider": self.provider,
-            "phone": self.phone,
-            "price": self.price,
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "category": self.category,
+#             #"brand": self.brand,
+#             "description": self.description,
+#             "provider": self.provider,
+#             "phone": self.phone,
+#             "price": self.price,
+#         }
 
 class BudgetItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -139,7 +139,7 @@ class BudgetItems(db.Model):
     service1_id= db.Column(db.Integer,db.ForeignKey(Service1.id))
     service2_id= db.Column(db.Integer,db.ForeignKey(Service2.id))
     service3_id= db.Column(db.Integer,db.ForeignKey(Service3.id))
-    service4_id= db.Column(db.Integer,db.ForeignKey(Service4.id))
+    #service4_id= db.Column(db.Integer,db.ForeignKey(Service4.id))
     
     def __repr__(self):
         return '<BudgetID %s>' % self.id
@@ -151,7 +151,7 @@ class BudgetItems(db.Model):
             "service1":self.service1_id,
             "service2":self.service2_id,
             "service3":self.service3_id,
-            "service4":self.service4_id
+            #"service4":self.service4_id
             # do not serialize the password, its a security breach
         }
 
