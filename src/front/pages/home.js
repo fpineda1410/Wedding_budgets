@@ -59,7 +59,7 @@ export const Home =(props)=> {
          setDom(d);
         }}
       > 
-        {show && children} 
+        {children} 
       </div>
     );
 

@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpacl --mode production",
     "local_start": "webpack serve --open --mode development",
-    "start": "webpack serve --open --mode development"
+    "start": "webpack serve --open --mode development --port 3000"
   },
   "keywords": [],
   "author": "",

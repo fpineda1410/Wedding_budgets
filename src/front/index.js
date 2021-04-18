@@ -5,4 +5,4 @@ import ReactDOM from "react-dom";
 import Layout from "./layout";
 
 //render your react application
-ReactDOM.render(<Layout />, document.querySelector("#root"));
+ReactDOM.render(<Layout />, document.body.appendChild(document.createElement("DIV")));
