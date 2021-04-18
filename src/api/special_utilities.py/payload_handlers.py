@@ -11,18 +11,19 @@ def get_merged_lists(current_user_id):
         fav_service1=[]
     try:
         current_service2_id = serviceSelected.service2_id
-        fav_service2 = Service1.query.filter_by(id=current_service2_id)
+        fav_service2 = Service2.query.filter_by(id=current_service2_id)
     except:
         fav_service2=[]
     try:
         current_service3_id = serviceSelected.service3_id
-        fav_service3 = Service1.query.filter_by(id=current_service3_id)
+        fav_service3 = Service3.query.filter_by(id=current_service3_id)
     except:
-        fav_service2=[]
+        fav_service3=[]
 
-    favorite_planet_serial = list(map(lambda favorite: favorite.serialize(), favorite_planet))
-    favorite_character_serial = list(map(lambda favorite: favorite.serialize(), favorite_character))
-    merged_list=favorite_character_serial + favorite_planet_serial
+    favorite_service1_serial = list(map(lambda service1: service1.serialize(), fav_service1))
+    favorite_service2_serial = list(map(lambda service2: service2.serialize(), fav_service2))
+    favorite_service3_serial = list(map(lambda service3: service3.serialize(), fav_service3))
+    merged_list = favorite_service1_serial + favorite_service2_serial + favorite_service3_serial
     return merged_list
 
 def depurate_favorite_data (incoming_list,current_user_id):
