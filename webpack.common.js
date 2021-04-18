@@ -4,11 +4,11 @@ const Dotenv = require('dotenv-webpack');
 const path = require ("path");
 
 module.exports = {
-    entry:"./src/index.jsx",
+    entry:"./src/front/index.js",
     output: {
         path: path.resolve(__dirname,"dist"),
         filename: "bundle.js",
-        publicPath: '/'
+        publicPath: './src'
     },
     module: {
         rules: [
@@ -40,7 +40,7 @@ module.exports = {
 
     }]
 },
-    plugins: [new HtmlWebPackPlugin ({template:"./src/index.html"}),
+    plugins: [new HtmlWebPackPlugin ({template:"./src/front/index.html"}),
     new Dotenv({ safe: true, systemvars: true })
 
 ]

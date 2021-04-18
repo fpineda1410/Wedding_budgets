@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch":"webpack serve --open --mode development",
+    "watch": "webpack serve --open --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpacl --mode production",
     "local_start": "webpack serve --open --mode development",
@@ -17,6 +17,8 @@
     "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-react": "^7.13.13",
+    "@webpack-cli/remove": "^0.1.8",
+    "@webpack-cli/serve": "^1.3.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.1",
     "dotenv-webpack": "^7.0.2",
@@ -25,7 +27,7 @@
     "less-loader": "^8.1.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.33.2",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.3.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
   },
@@ -36,6 +38,7 @@
     "rc-queue-anim": "^1.6.10",
     "rc-scroll-anim": "^2.7.6",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0"
   }
 }

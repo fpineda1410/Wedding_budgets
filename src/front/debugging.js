@@ -3,11 +3,11 @@
 import React, {useState, useEffect} from 'react';
 import { enquireScreen } from 'enquire-js';
 import ReactDOM from 'react-dom';
-import Nav3 from './Nav3.jsx';
+import Nav3 from './pages/Nav3';
 
 import {
   Nav30DataSource
-} from './data.source';
+} from './pages/support_files/data.source';
 
 import './less/antMotionStyle.less';
 
