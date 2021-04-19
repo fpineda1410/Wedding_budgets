@@ -1,11 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import { enquireScreen } from 'enquire-js';
-import ReactDOM from 'react-dom';
-import Nav3 from './Nav3.js';
 
-import {
-  Nav30DataSource
-} from './support_files/data.source';
+import React, {useState, useEffect} from 'react';
+import { Layout, Menu, Breadcrumb } from 'antd';
+
+import { enquireScreen } from 'enquire-js';
+import 'antd/dist/antd.css';
+const { Header, Content, Footer } = Layout;
+
+import Navbar from "./Navbar.js"
+
+import Banner2 from './Banner2';
+
+import { Banner20DataSource } from './supplementary/data.source';
 
 import './less/antMotionStyle.less';
 
@@ -43,10 +48,11 @@ export const Home =(props)=> {
   })
   
     const children = [
-      <Nav3
-        id="Nav3_0"
-        key="Nav3_0"
-        dataSource={Nav30DataSource}
+      <Navbar/>, 
+      <Banner2
+        id="Banner2_0"
+        key="Banner2_0"
+        dataSource={Banner20DataSource}
         isMobile={isMobile}
       />
 
@@ -64,5 +70,3 @@ export const Home =(props)=> {
     );
 
 }
-
-// export default Home;

@@ -1,0 +1,17 @@
+.navbar_buttons{
+    margin-top: 3vh;
+    background: #f0f0f0;
+    border-color: #f0f0f0;
+}
+
+
+
+.navbar_buttons:hover{
+    height: 5vh;
+    margin-right:1vh;
+    margin-left:1vh;
+    background:#D5CDC9;
+    border-color: #D5CDC9;
+    opacity: 0.9
+    ;
+}
