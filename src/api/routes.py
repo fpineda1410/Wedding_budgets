@@ -12,8 +12,8 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
-# from .special_utilities.initialLoad import initial_loader
-# from .special_utilities.payload_handlers import get_merged_lists,update_favorites_lists
+# from special_utilities.initialLoad import initial_loader
+from .special_utilities.payload_handlers import get_merged_lists,update_favorites_lists
 
 from datetime import timedelta
 
@@ -216,6 +216,10 @@ def get_serv3():
 
     elif request.method == 'GET':  
         return jsonify(Service3.getAllService()), 200
+
+@api.route("/all" , methods=['GET'])
+def get_allbudgets():
+    return jsonify(BudgetItems.getAllBudget()), 200
 
 @api.route('/user', methods=['POST','GET'])
 def handle_user():

@@ -1,9 +1,10 @@
-from api.models import db, User,Color,FavoriteColor
+from api.models import db, User, Service1, Service2, Service3,BudgetItems
+from flask import Flask, request, jsonify, url_for, Blueprint
 
 #*----The purpose of the payload handlers is to check the current state of databases and updated them when the user has submit the information
 
 def get_merged_lists(current_user_id):
-    serviceSelected = BudgetItems.query.filter_by(user_id=current_user_id)
+    serviceSelected = BudgetItems.query.filter_by(user_id=current_user_id).first()
     try:        
         current_service1_id = serviceSelected.service1_id
         fav_service1 = Service1.query.filter_by(id=current_service1_id)  
@@ -20,9 +21,9 @@ def get_merged_lists(current_user_id):
     except:
         fav_service3=[]
 
-    favorite_service1_serial = list(map(lambda service1: service1.serialize(), fav_service1))
-    favorite_service2_serial = list(map(lambda service2: service2.serialize(), fav_service2))
-    favorite_service3_serial = list(map(lambda service3: service3.serialize(), fav_service3))
+    favorite_service1_serial = list(map(lambda x: x.serialize(), fav_service1))
+    favorite_service2_serial = list(map(lambda x: x.serialize(), fav_service2))
+    favorite_service3_serial = list(map(lambda x: x.serialize(), fav_service3))
     merged_list = favorite_service1_serial + favorite_service2_serial + favorite_service3_serial
     return merged_list
 

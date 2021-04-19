@@ -144,6 +144,11 @@ class BudgetItems(db.Model):
     def __repr__(self):
         return '<BudgetID %s>' % self.id
 
+    def getAllBudget():
+        list_budget = BudgetItems.query.all()
+        list_budget = list(map(lambda x: x.serialize(), list_budget))
+        return(list_budget)
+
     def serialize(self):
         return {
             "id": self.id,
