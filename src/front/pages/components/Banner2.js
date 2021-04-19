@@ -4,10 +4,12 @@ import { DownOutlined } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import BannerAnim, { Element } from 'rc-banner-anim';
-import { isImg } from './supplementary/utils';
+import { isImg } from '../supplementary/utils';
 import 'rc-banner-anim/assets/index.css';
 
-const BgElement = Element.BgElement;
+import Wedding from '../resources/wedding.svg'
+
+const BgElement = Wedding;
 class Banner extends React.PureComponent {
   render() {
     const { ...props } = this.props;
@@ -45,6 +47,16 @@ class Banner extends React.PureComponent {
           {...elem}
           prefixCls={elemClassName}
         >
+          <QueueAnim
+              type={['bottom', 'top']}
+              delay={200}
+              key="text"
+              {...textWrapper}
+              id={`wrapperBlock${i}`}
+            >
+                 {/* <Wedding /> */}
+            </QueueAnim>
+         
           <BgElement key="bg" {...bg} id={`bg${i}`} />
           <div {...page}>
             <QueueAnim

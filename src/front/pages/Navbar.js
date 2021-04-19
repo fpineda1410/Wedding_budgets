@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
 import { Layout, Menu, Row, Col,Button,Typography,PageHeader,Image } from 'antd';
 import './css/navbar.css';
 const { Header, Content, Footer } = Layout;
@@ -12,8 +14,12 @@ function Navbar () {
      
       <Row style={{height:"10vh"}}>
           <Col span={6} xs={{ order: 1 }} sm={{ order: 2 }} md={{ order: 3 }} lg={{ order: 4 }}>
-            <Button className="navbar_buttons" type="primary" ><Title level={5}>h2. Ant Design</Title></Button>
-            <Button className="navbar_buttons" type="primary" ><Title level={5}>h2. Ant Design</Title></Button>
+            <Link key="0" to={"/register"}>
+              <Button className="navbar_buttons" type="primary" ><Title level={5}>Registrarse</Title></Button>
+            </Link>
+            <Link key="0" to={"/login"}>
+              <Button className="navbar_buttons" type="primary" ><Title level={5}>LogIn</Title></Button>
+            </Link>
           </Col>
           <Col span={6} xs={{ order: 2 }} sm={{ order: 1 }} md={{ order: 4 }} lg={{ order: 3 }}>
             
@@ -30,10 +36,7 @@ function Navbar () {
             />
           </Col>
       </Row>
-     
-       
-      
-   
+
   )
 }
 

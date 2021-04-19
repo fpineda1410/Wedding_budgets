@@ -31,9 +31,9 @@
     background-size: cover;
   }
   .bg0 {
-    background: url("https://i.ytimg.com/vi/aXpHP3XQ7mk/maxresdefault.jpg") center;
+    background: url("../resources/dashboard.svg") left;
     background-size: cover;
-    height: 80%;
+    height: 100%;
     width: ~"calc(100% + 100px)";
     left: -50px;
     &:before {
@@ -55,15 +55,15 @@
   &-page {
     position: relative;
     top: 20%;
-    max-width: 1000spx;
+    max-width: -1500px;
     margin: auto;
   }
   &-text-wrapper {
     display: inline-block;
     font-size: 20px;
     color: @template-text-color-light;
-    width: 400px;
-    text-align: left;
+    width: 600px;
+    text-align: center;
     .@{banner2}-title {
       left: 0;
       margin: auto;
@@ -76,8 +76,8 @@
       font-weight: lighter;
     }
     button {
-      border: 1px solid #fff;
-      color: #fff;
+      border: 1px solid rgb(124, 124, 124);
+      color: rgb(124, 124, 124);
       background: transparent;
       transition: background .45s @ease-in, border .45s @ease-in;
       line-height: 36px;
@@ -88,9 +88,9 @@
         transition: text-shadow .45s @ease-out;
       }
       &:hover {
-        color: rgb(138, 138, 138);
-        border-color: #f0f0f0;
-        background: #f0f0f0;
+        color: rgb(255, 255, 255);
+        border-color: #D5CDC9;
+        background: #D5CDC9;
         transition: background .45s @ease-out, border .45s @ease-out;
         
       }
