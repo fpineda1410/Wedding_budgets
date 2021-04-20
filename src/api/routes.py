@@ -217,10 +217,6 @@ def get_serv3():
     elif request.method == 'GET':  
         return jsonify(Service3.getAllService()), 200
 
-@api.route("/all" , methods=['GET'])
-def get_allbudgets():
-    return jsonify(BudgetItems.getAllBudget()), 200
-
 @api.route('/user', methods=['POST','GET'])
 def handle_user():
     if request.method == 'POST':
@@ -265,13 +261,96 @@ def handle_user():
 
         return jsonify(all_user), 200
 
-# @api.route("/all" , methods=["GET"])
-# def get_all():
-#     allService = {
-#         "flower": Service1.getAllService(),
-#         "location": Service2.getAllService(),
-#         "photo": Service3.getAllService(),
-#         "music": Service4.getAllService()
-#     }
-#     return jsonify(allService), 200
+@api.route("/allserv" , methods=["GET"])
+def get_all():
+    allService = {
+        "flower": Service1.getAllService(),
+        "location": Service2.getAllService(),
+        "photo": Service3.getAllService(),
+        # "music": Service4.getAllService()
+    }
+    return jsonify(allService), 200
+
+@api.route('/listserv1', methods=['POST'])
+def post_listserv1():
+    listserv = request.get_json()
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        service = Service1()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
+    return jsonify({"msg": "Well done. Your POSTED a list of services 1"}), 200
+
+@api.route('/listserv2', methods=['POST'])
+def post_listserv2():
+    listserv = request.get_json()
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        service = Service2()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
+    return jsonify({"msg": "Well done. Your POSTED a list of services 2"}), 200
+
+@api.route('/listserv3', methods=['POST'])
+def post_listserv3():
+    listserv = request.get_json()
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        service = Service3()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service) # agrega un servicio a la base de datos
+        db.session.commit() # guarda los cambios
+    return jsonify({"msg": "Well done. Your POSTED a list of services 3"}), 200
+
+
 

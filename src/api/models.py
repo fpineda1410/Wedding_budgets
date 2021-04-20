@@ -44,6 +44,9 @@ class Service1(db.Model):
         list_serv = list(map(lambda x: x.serialize(), list_serv))
         return(list_serv)
 
+    def __repr__(self):
+        return '<Srv1 %s>' % self.provider
+
     def serialize(self):
         return {
             "id": self.id,
@@ -69,6 +72,9 @@ class Service2(db.Model):
         list_serv = Service2.query.all()
         list_serv = list(map(lambda x: x.serialize(), list_serv))
         return  (list_serv)
+    
+    def __repr__(self):
+        return '<Srv2 %s>' % self.provider
 
     def serialize(self):
         return {
@@ -95,6 +101,9 @@ class Service3(db.Model):
         list_serv = Service3.query.all()
         list_serv = list(map(lambda x: x.serialize(), list_serv))
         return(list_serv)
+
+    def __repr__(self):
+        return '<Srv3 %s>' % self.provider
 
     def serialize(self):
         return {

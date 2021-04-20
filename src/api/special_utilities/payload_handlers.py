@@ -5,6 +5,25 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 
 def get_merged_lists(current_user_id):
     serviceSelected = BudgetItems.query.filter_by(user_id=current_user_id).first()
+    # list_serv = BudgetItems.query.filter_by(user_id=current_user_id)
+    # list_serv = list(map(lambda x: x.serialize(), list_serv))
+    # for i in range(len(list_serv)):
+    #     serviceSelected = list_serv[i]
+    #     try:        
+    #         current_service1_id = serviceSelected.service1_id
+    #         fav_service1 = Service1.query.filter_by(id=current_service1_id)  
+    #     except:
+    #         fav_service1=[]
+    #     try:
+    #         current_service2_id = serviceSelected.service2_id
+    #         fav_service2 = Service2.query.filter_by(id=current_service2_id)
+    #     except:
+    #         fav_service2=[]
+    #     try:
+    #         current_service3_id = serviceSelected.service3_id
+    #         fav_service3 = Service3.query.filter_by(id=current_service3_id)
+    #     except:
+    #         fav_service3=[]
     try:        
         current_service1_id = serviceSelected.service1_id
         fav_service1 = Service1.query.filter_by(id=current_service1_id)  
