@@ -107,7 +107,8 @@ def get_budget():
 def update_budget_sm():
     user_payload=request.get_json()
     updated_lists=update_favorites_lists(user_payload,current_user.id)
-    return jsonify("Succesfully updated databases", updated_lists), 200
+    if updated_lists:
+        return jsonify("Succesfully updated databases"), 200
 
 #!----Just use for debugging purposes
 @api.route("/user_identity", methods=["GET"])
