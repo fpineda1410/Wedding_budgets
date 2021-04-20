@@ -162,10 +162,10 @@ class BudgetItems(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "service1":self.service1_id,
-            "service2":self.service2_id,
-            "service3":self.service3_id,
-            #"service4":self.service4_id
+            "service1_id":self.service1_id,
+            "service2_id":self.service2_id,
+            "service3_id":self.service3_id,
+            #"service4_id":self.service4_id
             # do not serialize the password, its a security breach
         }
 
