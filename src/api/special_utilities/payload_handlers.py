@@ -41,7 +41,8 @@ def update_budget_list (budget_list,current_user_id):
 
         db.session.add(newBudget)
         db.session.commit()
-        return True  
+        return True
+        # return newBudget 
     except:
         newBudget = BudgetItems()
         newBudget.user_id = current_user_id
@@ -55,6 +56,7 @@ def update_budget_list (budget_list,current_user_id):
         db.session.add(newBudget)
         db.session.commit()
         return True
+        # return newBudget
 
 def update_favorites_lists (payload_from_request,current_user_id):
     budget_list=[]
@@ -75,3 +77,4 @@ def update_favorites_lists (payload_from_request,current_user_id):
     dbStatus = update_budget_list (budget_list,current_user_id)
     if dbStatus:
         return True
+    # return dbStatus

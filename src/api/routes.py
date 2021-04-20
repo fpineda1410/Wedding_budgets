@@ -108,7 +108,11 @@ def update_budget_sm():
     user_payload=request.get_json()
     updated_lists=update_favorites_lists(user_payload,current_user.id)
     if updated_lists:
-        return jsonify("Succesfully updated databases"), 200
+        currentBudget = BudgetItems.query.filter_by(user_id=current_user.id)
+        currentBudgetList = list(map(lambda budget: budget.serialize(), currentBudget))
+    return jsonify(currentBudgetList), 200
+        # return jsonify("Succesfully updated databases"), 200
+
 
 #!----Just use for debugging purposes
 @api.route("/user_identity", methods=["GET"])
@@ -352,6 +356,10 @@ def post_listserv3():
         db.session.add(service) # agrega un servicio a la base de datos
         db.session.commit() # guarda los cambios
     return jsonify({"msg": "Well done. Your POSTED a list of services 3"}), 200
+
+@api.route("/allbudget" , methods=['GET'])
+def get_allbudget():
+    return jsonify(BudgetItems.getAllBudget()), 200
 
 
 
