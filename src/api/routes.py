@@ -13,7 +13,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
 # from special_utilities.initialLoad import initial_loader
-from .special_utilities.payload_handlers import get_merged_lists, update_favorites_lists, post_listservices_1
+from .special_utilities.payload_handlers import get_merged_lists, update_favorites_lists, post_listservice1
 
 from datetime import timedelta
 
@@ -36,92 +36,7 @@ api = Blueprint('api', __name__)
 #     db.session.add(user)
 #     db.session.commit()
 def services_load():
-    listserv1 = [
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 750,
-            "provider": "Floristeria de Costa Rica PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Floristeria de Costa Rica PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1500,
-            "provider": "Floristeria de Costa Rica PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Flores Gala PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1500,
-            "provider": "Flores Gala PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 2000,
-            "provider": "Flores Gala PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 420,
-            "provider": "Juno Flowers PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 630,
-            "provider": "Juno Flowers PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1110,
-            "provider": "Juno Flowers PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 500,
-            "provider": "Nandallo PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 750,
-            "provider": "Nandallo PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Nandallo PAX 3"
-        }]
-    post_listservices(listserv1)
+    post_listservice1()
 
 
 @api.route('/create-account', methods=['POST'])

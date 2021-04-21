@@ -1,35 +1,43 @@
 from api.models import db, User, Service1, Service2, Service3, BudgetItems
 
+
 def get_merged_lists(current_user_id):
-    serviceSelected = BudgetItems.query.filter_by(user_id=current_user_id).first()
-    try:        
+    serviceSelected = BudgetItems.query.filter_by(
+        user_id=current_user_id).first()
+    try:
         current_service1_id = serviceSelected.service1_id
-        fav_service1 = Service1.query.filter_by(id=current_service1_id)  
+        fav_service1 = Service1.query.filter_by(id=current_service1_id)
     except:
-        fav_service1=[]
+        fav_service1 = []
     try:
         current_service2_id = serviceSelected.service2_id
         fav_service2 = Service2.query.filter_by(id=current_service2_id)
     except:
-        fav_service2=[]
+        fav_service2 = []
     try:
         current_service3_id = serviceSelected.service3_id
         fav_service3 = Service3.query.filter_by(id=current_service3_id)
     except:
-        fav_service3=[]
+        fav_service3 = []
 
-    favorite_service1_serial = list(map(lambda service1: service1.serialize(), fav_service1))
-    favorite_service2_serial = list(map(lambda service2: service2.serialize(), fav_service2))
-    favorite_service3_serial = list(map(lambda service3: service3.serialize(), fav_service3))
-    merged_list = favorite_service1_serial + favorite_service2_serial + favorite_service3_serial
+    favorite_service1_serial = list(
+        map(lambda service1: service1.serialize(), fav_service1))
+    favorite_service2_serial = list(
+        map(lambda service2: service2.serialize(), fav_service2))
+    favorite_service3_serial = list(
+        map(lambda service3: service3.serialize(), fav_service3))
+    merged_list = favorite_service1_serial + \
+        favorite_service2_serial + favorite_service3_serial
     return merged_list
 
-def update_budget_list (budget_list,current_user_id):
+
+def update_budget_list(budget_list, current_user_id):
     try:
-        oldBudget = BudgetItems.query.filter_by(user_id=current_user_id).first()
+        oldBudget = BudgetItems.query.filter_by(
+            user_id=current_user_id).first()
         db.session.delete(oldBudget)
         db.session.commit()
-        
+
         newBudget = BudgetItems()
         newBudget.user_id = current_user_id
         if budget_list[0] > 0:
@@ -37,7 +45,7 @@ def update_budget_list (budget_list,current_user_id):
         if budget_list[1] > 0:
             newBudget.service2_id = budget_list[1]
         if budget_list[2] > 0:
-            newBudget.service3_id = budget_list[2]        
+            newBudget.service3_id = budget_list[2]
 
         db.session.add(newBudget)
         db.session.commit()
@@ -51,14 +59,15 @@ def update_budget_list (budget_list,current_user_id):
         if budget_list[1] > 0:
             newBudget.service2_id = budget_list[1]
         if budget_list[2] > 0:
-            newBudget.service3_id = budget_list[2]        
+            newBudget.service3_id = budget_list[2]
 
         db.session.add(newBudget)
         db.session.commit()
         return True
 
-def update_favorites_lists (payload_from_request,current_user_id):
-    budget_list=[]
+
+def update_favorites_lists(payload_from_request, current_user_id):
+    budget_list = []
     for json_item in payload_from_request:
         if json_item["service1_id"]:
             budget_list.append(json_item["service1_id"])
@@ -73,11 +82,97 @@ def update_favorites_lists (payload_from_request,current_user_id):
         else:
             budget_list.append(0)
 
-    dbStatus = update_budget_list (budget_list,current_user_id)
+    dbStatus = update_budget_list(budget_list, current_user_id)
     if dbStatus:
         return True
 
-def post_listservice_1(listserv):
+
+def post_listservice1():
+    listserv = [
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 750,
+            "provider": "Floristeria de Costa Rica PAX 1"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1000,
+            "provider": "Floristeria de Costa Rica PAX 2"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1500,
+            "provider": "Floristeria de Costa Rica PAX 3"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1000,
+            "provider": "Flores Gala PAX 1"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1500,
+            "provider": "Flores Gala PAX 2"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 2000,
+            "provider": "Flores Gala PAX 3"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 420,
+            "provider": "Juno Flowers PAX 1"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 630,
+            "provider": "Juno Flowers PAX 2"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1110,
+            "provider": "Juno Flowers PAX 3"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 500,
+            "provider": "Nandallo PAX 1"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 750,
+            "provider": "Nandallo PAX 2"
+        },
+        {
+            "category": "Flores",
+            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+            "phone": "N/A",
+            "price": 1000,
+            "provider": "Nandallo PAX 3"
+        }]
     for i in range(len(listserv)):
         body = listserv[i]
         if body is None:
@@ -92,12 +187,12 @@ def post_listservice_1(listserv):
             return "You need to specify the phone", 400
         if 'price' not in body:
             return "You need to specify the price", 400
-
-        service1 = Service1()
+        service = Service1()
         service.category = body['category']
         service.description = body['description']
         service.provider = body['provider']
         service.phone = body['phone']
         service.price = body['price']
-        db.session.add(service)
-        db.session.commit() 
+        db.session.add(service)  # agrega un servicio a la base de datos
+        db.session.commit()  # guarda los cambios
+    # return jsonify({"msg": "Well done. Your POSTED a list of services 1"}), 200
