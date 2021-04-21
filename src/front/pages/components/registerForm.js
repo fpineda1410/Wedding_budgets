@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Row, Col,Form, Input, InputNumber, Button } from 'antd';
 import { enquireScreen } from 'enquire-js';
 import QueueAnim from 'rc-queue-anim';
 
+import { Context } from "../../store/appContext.js";
+
 let isMobile;
 
-enquireScreen((b) => {
-  isMobile = b;
+enquireScreen((isMoving) => {
+  isMobile = isMoving;
 });
 
 
@@ -20,6 +22,7 @@ const layout = {
   };
 
   const validateMessages = {
+
     required: '${label} is required!',
     types: {
       email: '${label} is not a valid email!',
@@ -32,8 +35,12 @@ const layout = {
 
 export const RegisterForm =()=>  {
 
+    const { store, actions } = useContext(Context);
+    
     const onFinish = (values) => {
-        console.log(values);
+      let user=values.user;
+      actions.register_user(user.username,user.password,user.email,user.name,user.lastname,user.phone); 
+      console.log(values);
       }; 
 
     const animType = {
