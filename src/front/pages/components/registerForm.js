@@ -20,7 +20,7 @@ const layout = {
   };
 
   const validateMessages = {
-    
+
     required: '${label} is required!',
     types: {
       email: '${label} is not a valid email!',
@@ -32,7 +32,6 @@ const layout = {
   };
 
 export const RegisterForm =()=>  {
-
     const onFinish = (values) => {
         console.log(values);
       }; 
