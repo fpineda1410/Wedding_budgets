@@ -7,6 +7,7 @@ import { Home } from "./pages/home.js";
 
 import {LoginForm} from "./pages/components/loginForm.js";
 import {RegisterForm} from "./pages/components/registerForm.js";
+import {Dashboard} from "./pages/components/dashboard.js";
 
 
 //create your first component
@@ -28,6 +29,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/register">
 							<RegisterForm />
+						</Route>
+						<Route exact path="/dashboard">
+							<Dashboard />
 						</Route>
 					</Switch>	
 			</BrowserRouter>
