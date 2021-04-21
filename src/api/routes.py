@@ -27,14 +27,6 @@ api = Blueprint('api', __name__)
 
 # * This method injects data to the database before receiving any foreign requests
 @api.before_app_first_request
-# def characters_load():
-#     user=User()
-#     user.username="example_user"
-#     user.email="example_email"
-#     user.password="example_password"
-#     user.is_active=True
-#     db.session.add(user)
-#     db.session.commit()
 def services_load():
     post_listservice1()
     post_listservice2()
