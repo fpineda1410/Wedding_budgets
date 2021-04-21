@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Row, Col,Form, Input, Button, Checkbox  } from 'antd';
 import { enquireScreen } from 'enquire-js';
 import QueueAnim from 'rc-queue-anim';
+
+
+import { Context } from "../../store/appContext.js";
 
 let isMobile;
 
@@ -28,9 +31,13 @@ const layout = {
 
 export const LoginForm =()=>  {
 
+    const { store, actions } = useContext(Context);
+    
     const onFinish = (values) => {
-        console.log('Success:', values);
-      };
+    console.log(values);
+      actions.login_user(values.username,values.password); 
+      console.log(store.bearer_token)
+    }; 
     
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

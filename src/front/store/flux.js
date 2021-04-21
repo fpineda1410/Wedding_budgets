@@ -2,8 +2,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-crimson-rhinoceros-7f2a6oi5.ws-us03.gitpod.io/";
-
+let global_url = "https://3001-emerald-wildebeest-7m4h8xsp.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -21,15 +20,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const requestOptions = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ username: username, password: password,email:email,name:name,last_name:lastname,phone:phone})
+					body: JSON.stringify({username:username, password:password,name:name, last_name:lastname, email:email, phone:phone})
 				};
-				fetch(global_url + "api/create-account", requestOptions)
+				fetch(global_url + "api/user", requestOptions)
 					.then(response => response.json())
 					.then(data => console.log(data));
 			},
 
 			login_user: async (username, password) => {
-
+                let temp_token;
+                console.log(username,password);
 				const store = getStore();
 				const requestOptions = {
 					method: "POST",
@@ -37,10 +37,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({ username: username, password: password })
 				};
 
-				await fetch(global_url + "api/login", requestOptions)
-					.then(response => response.json())
-					.then(data => setStore({ bearer_token: data }));
-				console.log(store.bearer_token);
+				const result =await fetch(global_url + "api/login", requestOptions)
+					        .then(response => response.json())
+                            .then(data =>  temp_token=data.access_token);
+                console.log(temp_token);
+                setStore({bearer_token:temp_token})
 
 				if (store.bearer_token.length > 0) {
 					setStore({ login: true });
@@ -49,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: "Bearer " + store.bearer_token.access_token
+						Authorization: "Bearer " + store.bearer_token
 					}
 				};
 				await fetch(global_url + "api/get-budget", requestOptions_budget)

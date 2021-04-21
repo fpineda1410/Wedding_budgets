@@ -11,7 +11,6 @@ enquireScreen((isMoving) => {
   isMobile = isMoving;
 });
 
-
 const layout = {
     labelCol: {
       span: 8,
@@ -39,8 +38,8 @@ export const RegisterForm =()=>  {
     
     const onFinish = (values) => {
       let user=values.user;
-      actions.register_user(user.username,user.password,user.email,user.name,user.lastname,user.phone); 
-      console.log(values);
+      actions.register_user(user.username,user.password,user.email,values.user.name,values.user.last_name,values.user.phone); 
+      console.log(values.user);
       }; 
 
     const animType = {
