@@ -86,7 +86,6 @@ def update_favorites_lists(payload_from_request, current_user_id):
     if dbStatus:
         return True
 
-
 def post_listservice1():
     listserv = [
         {
@@ -195,4 +194,219 @@ def post_listservice1():
         service.price = body['price']
         db.session.add(service)  # agrega un servicio a la base de datos
         db.session.commit()  # guarda los cambios
-    # return jsonify({"msg": "Well done. Your POSTED a list of services 1"}), 200
+
+def post_listservice2():
+    listserv = [{
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+            "phone": "N/A", 
+            "price": 3150, 
+            "provider": "Hotel Herradura PAX 1"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+            "phone": "N/A", 
+            "price": 6300, 
+            "provider": "Hotel Herradura PAX 2"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+            "phone": "N/A", 
+            "price": 9450,
+            "provider": "Hotel Herradura PAX 3"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+            "phone": "N/A", 
+            "price": 3550,
+            "provider": "Sheraton Escazu PAX 1"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+            "phone": "N/A", 
+            "price": 7100,
+            "provider": "Sheraton Escazu PAX 2"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+            "phone": "N/A", 
+            "price": 10650,
+            "provider": "Sheraton Escazu PAX 3"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+            "phone": "N/A", 
+            "price": 3500,
+            "provider": "Occidental Papagayo Resort PAX 1"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+            "phone": "N/A", 
+            "price": 7000,
+            "provider": "Occidental Papagayo Resort PAX 2"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+            "phone": "N/A", 
+            "price": 10500,
+            "provider": "Occidental Papagayo Resort PAX 3"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+            "phone": "N/A", 
+            "price": 3450,
+            "provider": "Swiss Travel PAX 1"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+            "phone": "N/A", 
+            "price": 6900,
+            "provider": "Swiss Travel PAX 2"
+        },
+        {
+            "category": "Salon y comida", 
+            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+            "phone": "N/A", 
+            "price": 10350,
+            "provider": "Swiss Travel PAX 3"
+        }]
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        service = Service2()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service)  # agrega un servicio a la base de datos
+        db.session.commit()  # guarda los cambios
+
+def post_listservice3():
+    listserv = [{
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (50 unidades)",  
+            "phone": "N/A", 
+            "price": 1200, 
+            "provider": "Gabriel Anta PAX 1"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (100 unidades)",  
+            "phone": "N/A", 
+            "price": 1500,
+            "provider": "Gabriel Anta PAX 2"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (150 unidades)",  
+            "phone": "N/A", 
+            "price": 1750,
+            "provider": "Gabriel Anta PAX 3"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (50 unidades)",  
+            "phone": "N/A", 
+            "price": 1000,
+            "provider": "Douglas Cedeño PAX 1"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (100 unidades)",  
+            "phone": "N/A", 
+            "price": 1500,
+            "provider": "Douglas Cedeño PAX 2"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (150 unidades)",  
+            "phone": "N/A", 
+            "price": 2000,
+            "provider": "Douglas Cedeño PAX 3"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (50 unidades)",  
+            "phone": "N/A", 
+            "price": 1000,
+            "provider": "Raw Shoots PAX 1"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (100 unidades)",  
+            "phone": "N/A", 
+            "price": 1250,
+            "provider": "Raw Shoots PAX 2"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (150 unidades)",  
+            "phone": "N/A", 
+            "price": 1500,
+            "provider": "Raw Shoots PAX 3"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (50 unidades)",  
+            "phone": "N/A", 
+            "price": 1500,
+            "provider": "Geoff Photography PAX 1"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (100 unidades)",  
+            "phone": "N/A", 
+            "price": 1750,
+            "provider": "Geoff Photography PAX 2"
+        },
+        {
+            "category": "Fotografia", 
+            "description": "Fotografias, memoria digital y video (150 unidades)",  
+            "phone": "N/A", 
+            "price": 2000,
+            "provider": "Geoff Photography PAX 3"
+        }]
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+        service = Service3()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service)  # agrega un servicio a la base de datos
+        db.session.commit()  # guarda los cambios

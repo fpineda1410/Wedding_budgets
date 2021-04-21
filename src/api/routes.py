@@ -13,7 +13,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
 # from special_utilities.initialLoad import initial_loader
-from .special_utilities.payload_handlers import get_merged_lists, update_favorites_lists, post_listservice1
+from .special_utilities.payload_handlers import get_merged_lists, update_favorites_lists, post_listservice1, post_listservice2, post_listservice3 
 
 from datetime import timedelta
 
@@ -37,6 +37,8 @@ api = Blueprint('api', __name__)
 #     db.session.commit()
 def services_load():
     post_listservice1()
+    post_listservice2()
+    post_listservice3()
 
 
 @api.route('/create-account', methods=['POST'])
