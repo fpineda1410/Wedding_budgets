@@ -3,8 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import injectContext from "./store/appContext.js";
 
-import { Home } from "./pages/home";
-import { Demo} from "./pages/demo";
+import { Home } from "./pages/home.js";
+
+import {LoginForm} from "./pages/components/loginForm.js";
+import {RegisterForm} from "./pages/components/registerForm.js";
+import {Dashboard} from "./pages/components/dashboard.js";
 
 
 //create your first component
@@ -21,8 +24,14 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/login">
+							<LoginForm />
+						</Route>
+						<Route exact path="/register">
+							<RegisterForm />
+						</Route>
+						<Route exact path="/dashboard">
+							<Dashboard />
 						</Route>
 					</Switch>	
 			</BrowserRouter>

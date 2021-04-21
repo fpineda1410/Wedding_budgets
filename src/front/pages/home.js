@@ -1,11 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import { enquireScreen } from 'enquire-js';
-import ReactDOM from 'react-dom';
-import Nav3 from './Nav3.js';
 
-import {
-  Nav30DataSource
-} from './support_files/data.source';
+import React, {useState, useEffect} from 'react';
+import { Layout, Menu, Breadcrumb } from 'antd';
+
+import { enquireScreen } from 'enquire-js';
+import 'antd/dist/antd.css';
+const { Header, Content, Footer } = Layout;
+
+import Navbar from "./Navbar.js"
+
+import Banner2 from './components/Banner2';
+import Feature2 from './components/Feature2';
+import Feature1 from './components/Feature1';
+import Footer1 from './components/Footer1.js';
+
+import { Banner20DataSource,
+        Feature20DataSource, 
+        Feature10DataSource,
+        Footer10DataSource
+       } 
+        from './supplementary/data.source';
 
 import './less/antMotionStyle.less';
 
@@ -43,10 +56,29 @@ export const Home =(props)=> {
   })
   
     const children = [
-      <Nav3
-        id="Nav3_0"
-        key="Nav3_0"
-        dataSource={Nav30DataSource}
+      <Navbar/>, 
+      <Banner2
+        id="Banner2_0"
+        key="Banner2_0"
+        dataSource={Banner20DataSource}
+        isMobile={isMobile}
+      />, 
+      <Feature2
+      id="Feature2_0"
+      key="Feature2_0"
+      dataSource={Feature20DataSource}
+      isMobile={isMobile}
+    />,
+    <Feature1
+      id="Feature1_0"
+      key="Feature1_0"
+      dataSource={Feature10DataSource}
+      isMobile={isMobile}
+    />,
+    <Footer1
+        id="Footer1_0"
+        key="Footer1_0"
+        dataSource={Footer10DataSource}
         isMobile={isMobile}
       />
 
@@ -64,5 +96,3 @@ export const Home =(props)=> {
     );
 
 }
-
-// export default Home;
