@@ -42,7 +42,7 @@ def update_budget_list (budget_list,current_user_id):
         db.session.add(newBudget)
         db.session.commit()
         return True
-        # return newBudget 
+
     except:
         newBudget = BudgetItems()
         newBudget.user_id = current_user_id
@@ -56,7 +56,6 @@ def update_budget_list (budget_list,current_user_id):
         db.session.add(newBudget)
         db.session.commit()
         return True
-        # return newBudget
 
 def update_favorites_lists (payload_from_request,current_user_id):
     budget_list=[]
@@ -77,4 +76,28 @@ def update_favorites_lists (payload_from_request,current_user_id):
     dbStatus = update_budget_list (budget_list,current_user_id)
     if dbStatus:
         return True
-    # return dbStatus
+
+def post_listservice_1(listserv):
+    for i in range(len(listserv)):
+        body = listserv[i]
+        if body is None:
+            return "The request body is null", 400
+        if 'category' not in body:
+            return "You need to specify the category", 400
+        if 'provider' not in body:
+            return "You need to specify the provider", 400
+        if 'description' not in body:
+            return "You need to specify the description", 400
+        if 'phone' not in body:
+            return "You need to specify the phone", 400
+        if 'price' not in body:
+            return "You need to specify the price", 400
+
+        service1 = Service1()
+        service.category = body['category']
+        service.description = body['description']
+        service.provider = body['provider']
+        service.phone = body['phone']
+        service.price = body['price']
+        db.session.add(service)
+        db.session.commit() 
