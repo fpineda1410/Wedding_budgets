@@ -52,7 +52,6 @@ export const Home =(props)=> {
         setShow(true)
       }, 500);
     }
-
   })
   
     const children = [

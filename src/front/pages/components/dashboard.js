@@ -10,7 +10,8 @@ import {
   ShoppingTwoTone,
   IdcardTwoTone,
   PhoneTwoTone,
-  WalletTwoTone
+  WalletTwoTone,
+  DeleteFilled
 } from "@ant-design/icons";
 
 import { Statistic, Row, Col } from "antd";
@@ -32,9 +33,9 @@ export const Dashboard = () => {
         actions.information_sorting_generator_flowers();
         actions.information_sorting_generator_locations();
         actions.information_sorting_generator_photo();
-        },[store.services_data])
+        },[store.services_data,store.bearer_token])
     
-
+if (store.bearer_token){
     return (
         <Layout>
             <Header className="header">
@@ -45,14 +46,11 @@ export const Dashboard = () => {
                     defaultSelectedKeys={["0"]}
                     style={{ float: "right" }}
                 >
-                    <Menu.Item key="1" >
-                        <IdcardTwoTone /> Registro
-                    </Menu.Item>
-                    <Menu.Item key="2">
+                    <Menu.Item key="1">
                         <WalletTwoTone />
                     CheckOut
                     </Menu.Item>
-                    <Menu.Item key="3">
+                    <Menu.Item key="2">
                         <PhoneTwoTone /> Contactenos
                     </Menu.Item>
 
@@ -146,12 +144,32 @@ export const Dashboard = () => {
 
                             </SubMenu>
                              <SubMenu key="sub4" icon={<ShoppingTwoTone />} title="Mi canasta">
+
                                  {store.flower_indicator? //1,4,5
-                                 <Menu.Item key="13">{store.flower_provider}</Menu.Item>:''}
+                                 <Menu.Item key="13" >
+                                     <DeleteFilled
+                                        key="delete"
+                                        onClick={() => {
+                                            actions.deleteItem({category:'Flowers', id: store.flower_indicator});
+                                        }}
+									/>{store.flower_provider}</Menu.Item>:''}
                                  {store.location_indicator? //1,4,5
-                                 <Menu.Item key="14">{store.location_provider}</Menu.Item>:''}
+                                 <Menu.Item key="14">
+                                     <DeleteFilled
+                                        key="delete"
+                                        onClick={() => {
+                                            actions.deleteItem({category:'Location', id: store.location_indicator});
+                                        }}
+									/>{store.location_provider}</Menu.Item>:''}
                                  {store.photo_indicator? //1,4,5
-                                 <Menu.Item key="15">{store.photo_provider}</Menu.Item>:''}
+                                 <Menu.Item key="15">
+                                     <DeleteFilled
+                                        key="delete"
+                                        onClick={() => {
+                                            actions.deleteItem({category:'Photography', id: store.photo_indicator});
+                                        }}
+									/>{store.photo_provider}</Menu.Item>:''}
+
                              </SubMenu>
 
 
@@ -170,4 +188,8 @@ export const Dashboard = () => {
             </Footer>
         </Layout>
     )
+    }else{
+        console.log(store.bearer_token)
+        return (<div>404 Access Denied</div>)
+    }
 }

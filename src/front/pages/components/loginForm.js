@@ -1,15 +1,16 @@
-import React, {useContext} from 'react'
+import React, {useContext,useState} from 'react'
 import { Row, Col,Form, Input, Button, Checkbox  } from 'antd';
 import { enquireScreen } from 'enquire-js';
 import QueueAnim from 'rc-queue-anim';
 
+import { Redirect } from "react-router-dom"; 
 
 import { Context } from "../../store/appContext.js";
 
 let isMobile;
 
-enquireScreen((b) => {
-  isMobile = b;
+enquireScreen((isMoving) => {
+  isMobile = isMoving;
 });
 
 
@@ -32,16 +33,52 @@ const layout = {
 export const LoginForm =()=>  {
 
     const { store, actions } = useContext(Context);
-    
+    const [login_redirect, setLoginRedirect] = useState(false);
+
+    async function login_user (username, password) {
+
+        let temp_token;
+        let login_status;
+        console.log(username,password);
+        
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: username, password: password })
+        };
+
+        const result =await fetch(store.global_url + "api/login", requestOptions)
+                    .then(response => login_status=response.status)
+                    .then(data =>  temp_token=data.access_token);
+        
+        actions.set_token_data(temp_token)
+        
+        if (login_status==200){
+            console.log(login_status)
+            setLoginRedirect(true);
+        }
+
+        const requestOptions_budget = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + temp_token
+            }
+        };
+
+        await fetch(store.global_url + "api/get-budget", requestOptions_budget)
+            .then(response => response.json())
+            .then(data => data);
+    }
+
     const onFinish = (values) => {
-    console.log(values);
-      actions.login_user(values.username,values.password); 
-      console.log(store.bearer_token)
+        console.log(values);
+        login_user(values.username,values.password); 
     }; 
     
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
+    const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+    };
 
     const animType = {
         queue: isMobile ? 'bottom' : 'left',
@@ -119,11 +156,11 @@ export const LoginForm =()=>  {
                     </Button>
                 </Form.Item>
         </Form>
+
+        {login_redirect?
+        <Redirect to="/dashboard"/>:''}
+
         </QueueAnim>
-        
-        
-             
-        
         
     )
 }

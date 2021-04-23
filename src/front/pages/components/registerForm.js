@@ -1,9 +1,11 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { Row, Col,Form, Input, InputNumber, Button } from 'antd';
 import { enquireScreen } from 'enquire-js';
 import QueueAnim from 'rc-queue-anim';
 
 import { Context } from "../../store/appContext.js";
+import { Redirect } from "react-router-dom"; 
+
 
 let isMobile;
 
@@ -33,13 +35,30 @@ const layout = {
   };
 
 export const RegisterForm =()=>  {
-
-    const { store, actions } = useContext(Context);
     
+    const { store, actions } = useContext(Context);
+    const [redirect, setRedirect]=useState(false);
+    
+    async function register_user (username, password, email,name, lastname,phone) {
+                let response_status;
+				const requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({username:username, password:password,name:name, last_name:lastname, email:email, phone:phone})
+				};
+				const result =await fetch(store.global_url + "api/user", requestOptions)
+                                    .then(response =>response_status=response.status)
+                                    .then(data => console.log(data));
+
+                if (response_status==200){
+                    setRedirect(true);
+                    console.log(redirect);
+                }
+	}
+
     const onFinish = (values) => {
       let user=values.user;
-      actions.register_user(user.username,user.password,user.email,values.user.name,values.user.last_name,values.user.phone); 
-      console.log(values.user);
+      register_user(user.username,user.password,user.email,values.user.name,values.user.last_name,values.user.phone);
       }; 
 
     const animType = {
@@ -135,13 +154,12 @@ export const RegisterForm =()=>  {
                 </Button>
             </Form.Item>
     </Form>
+    {redirect?
+    <Redirect to="/" />:''
+    }
 
     </QueueAnim>
-        
-        
-             
-        
-        
+
     )
 }
 

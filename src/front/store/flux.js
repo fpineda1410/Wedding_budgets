@@ -2,15 +2,18 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-purple-lizard-t5zopwx3.ws-us03.gitpod.io/";
+let global_url = "https://3001-blush-orca-28fe4ylj.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+            global_url:"https://3001-blush-orca-28fe4ylj.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
-			budget:[],
+            budget:[],
+            register_redirect:0,
+            login_redirect:false,
             services_data:[],
             //locations sorted data
             herradura_data:[],
@@ -38,19 +41,24 @@ const getState = ({ getStore, getActions, setStore }) => {
         
 		actions: {
 
-			register_user: async (username, password, email,name, lastname,phone) => {
-				const requestOptions = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({username:username, password:password,name:name, last_name:lastname, email:email, phone:phone})
-				};
-				fetch(global_url + "api/user", requestOptions)
-					.then(response => response.json())
-					.then(data => console.log(data));
-			},
-
+            deleteItem: element =>{
+                console.log (element) //si es un hotel-flores... {category id}
+                if (element.category=="Flowers"){
+                    setStore({flower_indicator:''})
+                    setStore({flower_provider:''})
+                }
+                if (element.category=="Location"){
+                    setStore({location_indicator:''})
+                    setStore({location_provider:''})
+                }
+                if (element.category=="Photography"){
+                    setStore({photo_indicator:''})
+                    setStore({photo_provider:''})
+                }
+            },
 			login_user: async (username, password) => {
                 let temp_token;
+                let login_status;
                 console.log(username,password);
 				const store = getStore();
 				const requestOptions = {
@@ -60,10 +68,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				const result =await fetch(global_url + "api/login", requestOptions)
-					        .then(response => response.json())
+					        .then(response => login_status=response.status)
                             .then(data =>  temp_token=data.access_token);
                 console.log(temp_token);
                 setStore({bearer_token:temp_token})
+
+                if (response_status==200){
+                    setStore ({login_redirect:true})
+                }
 
 				if (store.bearer_token.length > 0) {
 					setStore({ login: true });
@@ -79,6 +91,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => setStore({budget: data}));
             },
+
+            set_token_data: token =>{
+                setStore({bearer_token: token})
+            },
+
             update_local_budget_data: element =>{ //es un hotel, es un fotografo?? {name:hote,id:item.id}
                 const store= getStore();
 
@@ -94,8 +111,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({photo_indicator:element.id})
                     setStore({photo_provider:element.name})
                 }
-
-
             },
 
 			updateBudget: async updated_budget_array => {
@@ -156,7 +171,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                             flores_nandallo.push(item);
                         }
                         
-                    
                     });
                         
                         setStore({flores_cr_data:flores_cr});
