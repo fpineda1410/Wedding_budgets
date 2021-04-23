@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext,useEffect} from "react";
 
 import "antd/dist/antd.css";
 import "../css/dashboard.css";
@@ -12,14 +12,23 @@ import {
   PhoneTwoTone,
   WalletTwoTone
 } from "@ant-design/icons";
+
 import { Statistic, Row, Col } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
-export const Dashboard =()=> {
+import { Context } from "../../store/appContext.js";
 
+
+export const Dashboard =()=> {
+    const { store, actions } = useContext(Context);
+    useEffect (()=>{
+        actions.information_sorting_generator_flowers();
+        actions.information_sorting_generator_locations();
+        actions.information_sorting_generator_photo();
+    },[])
 
     return (
     <Layout>
@@ -31,7 +40,7 @@ export const Dashboard =()=> {
         defaultSelectedKeys={["0"]}
         style={{ float: "right" }}
       >
-        <Menu.Item key="1">
+        <Menu.Item key="1" >
           <IdcardTwoTone /> Registro
         </Menu.Item>
         <Menu.Item key="2">
@@ -58,7 +67,7 @@ export const Dashboard =()=> {
             style={{ height: "100%" }}
           >
             <SubMenu key="sub1" icon={<BankTwoTone />} title="Lugares">
-              <Menu.Item key="1">Windham Herradura</Menu.Item>
+              <Menu.Item key="1"onClick={()=>console.log(actions.information_sorting_generator_photo())}>Windham Herradura</Menu.Item>
               <Menu.Item key="2">Occidental Papagayo</Menu.Item>
               <Menu.Item key="3">Swiss Travel</Menu.Item>
               <Menu.Item key="4">Sheraton Escazu</Menu.Item>

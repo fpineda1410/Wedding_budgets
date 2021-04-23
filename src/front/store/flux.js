@@ -2,7 +2,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-emerald-wildebeest-7m4h8xsp.ws-us03.gitpod.io/";
+let global_url = "https://3001-brown-firefly-pzg8140y.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -11,8 +11,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			bearer_token: '',
 			login: false,
 			budget:[],
-			services_data:[]
-
+            services_data:[],
+            //locations sorted data
+            herradura_data:[],
+            swiss_travel_data:[],
+            sheraton_data:[],
+            papagayo_data:[],
+            //flowers sorted data
+            flores_cr_data:[],
+            flores_gala_data:[],
+            flores_juno_data:[],
+            flores_nandallo_data:[],
+            //photographers sorted data
+            gabriel_anta_data:[],
+            douglas_cedeno_data:[],
+            raw_shoots_data:[],
+            geoff_photography_data:[]
 		},
 		actions: {
 
@@ -76,6 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			},
 			get_services_data: async () => {
+                const store = getStore();
 				const urlAPI = global_url + "api/allserv";
 				const get_services_data= {
 					method: "GET",
@@ -85,15 +100,144 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const result = await fetch(urlAPI,get_services_data)
 					.then(res => res.json())
-					.then(data => setStore({services_data:data}));
-				}
+                    .then(data => setStore({services_data:data}));
+                    
+                console.log (store.services_data);
+
+            },
+
+            information_sorting_generator_flowers: () => {
+                const store = getStore();
+                console.log(store.services_data.flower);
+                let flores_cr=[];
+                let flores_gala=[];
+                let flores_juno=[];
+                let flores_nandallo=[];
+                //flower sorting
+                if (store.services_data.flower){
+                    store.services_data.flower.map((item,index)=>{
+                        
+                        if(index<=2){
+                            flores_cr.push(item);
+                        }
+                        if((index>2)&&(index<=5)){
+                            flores_gala.push(item);
+                        }
+                        if((index>5)&&(index<=8)){
+                            flores_juno.push(item);
+                        }
+                        if((index>8)&&(index<=11)){
+                            flores_nandallo.push(item);
+                        }
+                        
+                    
+                    });
+                        
+                        setStore({flores_cr_data:flores_cr});
+                        setStore({flores_gala_data:flores_gala});
+                        setStore({flores_juno_data:flores_juno});
+                        setStore({flores_nandallo_data:flores_nandallo});
+                        console.log(store.flores_cr_data)
+                        console.log(store.flores_gala_data)
+                        console.log(store.flores_juno_data)
+                        console.log(store.flores_nandallo_data)
+                }
+            
+            },
+            
+            information_sorting_generator_locations: () => {
+                const store = getStore();
+                let herradura=[];
+                let sheraton=[];
+                let papagayo=[];
+                let swiss_travel=[];
+                //flower sorting
+                if (store.services_data.location){
+                    store.services_data.location.map((item,index)=>{
+                        
+                        if(index<=2){
+                            herradura.push(item);
+                        }
+                        if((index>2)&&(index<=5)){
+                            sheraton.push(item);
+                        }
+                        if((index>5)&&(index<=8)){
+                            papagayo.push(item);
+                        }
+                        if((index>8)&&(index<=11)){
+                            swiss_travel.push(item);
+                        }
+                        
+                    
+                    });
+                        
+                        setStore({herradura_data:herradura});
+                        setStore({sheraton_data:sheraton});
+                        setStore({papagayo_data:papagayo});
+                        setStore({swiss_travel_data:swiss_travel});
+
+                        console.log(store.herradura_data)
+                        console.log(store.sheraton_data)
+                        console.log(store.papagayo_data)
+                        console.log(store.swiss_travel_data)
+                    }
+                    
+                },
+            
+                information_sorting_generator_photo: () => {
+                const store = getStore();
+                let gabriel_anta=[];
+                let douglas_cedeno=[];
+                let raw_shoots=[];
+                let geoff_photo=[];
+                //flower sorting
+                if (store.services_data.photo){
+                    store.services_data.photo.map((item,index)=>{
+                        
+                        if(index<=2){
+                            gabriel_anta.push(item);
+                        }
+                        if((index>2)&&(index<=5)){
+                            douglas_cedeno.push(item);
+                        }
+                        if((index>5)&&(index<=8)){
+                            raw_shoots.push(item);
+                        }
+                        if((index>8)&&(index<=11)){
+                            geoff_photo.push(item);
+                        }
+                        
+                    
+                    });
+                        
+                        setStore({gabriel_anta_data:gabriel_anta});
+                        setStore({douglas_cedeno_data:douglas_cedeno});
+                        setStore({raw_shoots_data:raw_shoots});
+                        setStore({geoff_photography_data:geoff_photo});
+
+                        console.log(store.gabriel_anta_data)
+                        console.log(store.douglas_cedeno_data)
+                        console.log(store.raw_shoots_data)
+                        console.log(store.geoff_photography_data)
+                    }
+
+
+
+
+
+
+            }
+
+              
 			
 
 			}
 
 
-		}
-	};
+		
+    };
+    
+}
 
 
 export default getState;
