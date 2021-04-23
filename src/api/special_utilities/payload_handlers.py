@@ -41,7 +41,7 @@ def update_budget_list(budget_list, current_user_id):
         newBudget = BudgetItems()
         newBudget.user_id = current_user_id
         if budget_list[0] > 0:
-            newBudget.service1_id = budget_list[0]
+            newBudget.service1_id = budget_list[0] #2,3,8
         if budget_list[1] > 0:
             newBudget.service2_id = budget_list[1]
         if budget_list[2] > 0:

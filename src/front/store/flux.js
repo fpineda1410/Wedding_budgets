@@ -2,7 +2,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-brown-firefly-pzg8140y.ws-us03.gitpod.io/";
+let global_url = "https://3001-purple-lizard-t5zopwx3.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -26,8 +26,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             gabriel_anta_data:[],
             douglas_cedeno_data:[],
             raw_shoots_data:[],
-            geoff_photography_data:[]
-		},
+            geoff_photography_data:[],
+            flower_indicator:'',
+            location_indicator:'',
+            photo_indicator:'',
+            flower_provider:'',
+            location_provider:'',
+            photo_provider:'',
+            update_budget_array:[0,0,0]
+        },
+        
 		actions: {
 
 			register_user: async (username, password, email,name, lastname,phone) => {
@@ -70,7 +78,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await fetch(global_url + "api/get-budget", requestOptions_budget)
 					.then(response => response.json())
 					.then(data => setStore({budget: data}));
-			},
+            },
+            update_local_budget_data: element =>{ //es un hotel, es un fotografo?? {name:hote,id:item.id}
+                const store= getStore();
+
+                if (element.category=="Flores"){
+                    setStore({flower_indicator:element.id})
+                    setStore({flower_provider:element.name})
+                }
+                if (element.category=="Salon y comida"){
+                    setStore({location_indicator:element.id})
+                    setStore({location_provider:element.name})
+                }
+                if (element.category=="Fotografia"){
+                    setStore({photo_indicator:element.id})
+                    setStore({photo_provider:element.name})
+                }
+
+
+            },
 
 			updateBudget: async updated_budget_array => {
 
@@ -221,23 +247,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log(store.geoff_photography_data)
                     }
 
-
-
-
-
-
             }
-
-              
-			
 
 			}
 
-
-		
     };
     
-}
+    }
 
 
 export default getState;
