@@ -39,6 +39,7 @@ export const LoginForm =()=>  {
 
         let temp_token;
         let login_status;
+        let initial_favorites;
         console.log(username,password);
         
         const requestOptions = {
@@ -47,16 +48,18 @@ export const LoginForm =()=>  {
             body: JSON.stringify({ username: username, password: password })
         };
 
-        const result =await fetch(store.global_url + "api/login", requestOptions)
-                    .then(response => login_status=response.status)
-                    .then(data =>  temp_token=data.access_token);
+        await fetch(store.global_url + "api/login", requestOptions)
+                .then(response => response.json())
+                .then(data =>  temp_token=data.access_token);
         
-        actions.set_token_data(temp_token)
+        console.log(temp_token);
+        actions.set_token_data(temp_token);
         
-        if (login_status==200){
+        if (temp_token){
+            console.log("el bicho")
             console.log(login_status)
             setLoginRedirect(true);
-        }
+        };
 
         const requestOptions_budget = {
             method: "GET",
@@ -68,7 +71,9 @@ export const LoginForm =()=>  {
 
         await fetch(store.global_url + "api/get-budget", requestOptions_budget)
             .then(response => response.json())
-            .then(data => data);
+            .then(data => initial_favorites=data);
+
+        console.log("Favorites are"+initial_favorites[0]);
     }
 
     const onFinish = (values) => {

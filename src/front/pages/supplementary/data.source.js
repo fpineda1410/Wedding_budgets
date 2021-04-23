@@ -15,9 +15,9 @@ export const Banner20DataSource = {
         title: { className: 'banner2-title', children: 'Wedding Budgets' },
         content: {
           className: 'banner2-content',
-          children: 'We are your best partners',
+          children: 'Somos tus mejores aliados',
         },
-        button: { href: 'register',className: 'banner2-button', children: 'Learn More' },
+        button: { href: 'register',className: 'banner2-button', children: 'Conocer Más!' },
       },
     ],
   },

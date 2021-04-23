@@ -2,18 +2,16 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-blush-orca-28fe4ylj.ws-us03.gitpod.io/";
+let global_url = "https://3001-blue-damselfly-1ln0k4xd.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-blush-orca-28fe4ylj.ws-us03.gitpod.io/",
+            global_url:"https://3001-blue-damselfly-1ln0k4xd.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
-            register_redirect:0,
-            login_redirect:false,
             services_data:[],
             //locations sorted data
             herradura_data:[],
