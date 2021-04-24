@@ -23,11 +23,15 @@ const { Header, Content, Footer, Sider } = Layout;
 import { Context } from "../../store/appContext.js";
 
 import CardGenerator from "./card_generator_method/card_generator.js";
+import Checkout_form from "./checkout_modal/modal.js"
+import Info_form from "./checkout_modal/information_modal.js"
 
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
     const [ show, isShowing ] = useState(false);
     const [card_data, setCardData]= useState('');
+    const [showModal , setShowModal] = useState(false)
+    const [showInfoModal , setInfoModal] = useState(false)
     
     useEffect(()=>{
         actions.information_sorting_generator_flowers();
@@ -46,12 +50,27 @@ if (store.bearer_token){
                     defaultSelectedKeys={["0"]}
                     style={{ float: "right" }}
                 >
-                    <Menu.Item key="1">
+                    <Menu.Item key="1" onClick={()=>{
+                        if (showModal){
+                            setInfoModal(false);
+                            setTimeout(()=>{setInfoModal(true);},200) 
+                        }else{
+                            setInfoModal(true);
+                        }
+                        }}>
                         <WalletTwoTone />
-                    CheckOut
+                        CheckOut
                     </Menu.Item>
-                    <Menu.Item key="2">
-                        <PhoneTwoTone /> Contactenos
+                    <Menu.Item key="2"
+                    onClick={()=>{
+                        if (showInfoModal){
+                            setShowModal(false);
+                            setTimeout(()=>{setShowModal(true);},200) 
+                        }else{
+                            setShowModal(true);
+                        }
+                        }}>
+                        <PhoneTwoTone />Contactenos
                     </Menu.Item>
 
 
@@ -63,8 +82,6 @@ if (store.bearer_token){
                     <Sider className="site-layout-background" width={200}>
                         <Menu
                             mode="inline"
-                            // defaultSelectedKeys={["0"]}
-                            // defaultOpenKeys={["sub1"]}
                             style={{ height: "100%" }}
                         >
                             <SubMenu key="sub1" icon={<BankTwoTone />} title="Lugares">
@@ -145,7 +162,7 @@ if (store.bearer_token){
                             </SubMenu>
                              <SubMenu key="sub4" icon={<ShoppingTwoTone />} title="Mi canasta">
 
-                                 {store.flower_indicator? //1,4,5
+                                 {store.flower_indicator?//1,4,5
                                  <Menu.Item key="13" >
                                      <DeleteFilled
                                         key="delete"
@@ -153,7 +170,7 @@ if (store.bearer_token){
                                             actions.deleteItem({category:'Flowers', id: store.flower_indicator});
                                         }}
 									/>{store.flower_provider}</Menu.Item>:''}
-                                 {store.location_indicator? //1,4,5
+                                 {store.location_indicator?//1,4,5
                                  <Menu.Item key="14">
                                      <DeleteFilled
                                         key="delete"
@@ -168,17 +185,27 @@ if (store.bearer_token){
                                         onClick={() => {
                                             actions.deleteItem({category:'Photography', id: store.photo_indicator});
                                         }}
-									/>{store.photo_provider}</Menu.Item>:''}
+								/>{store.photo_provider}</Menu.Item>:''}
 
                              </SubMenu>
-
-
                         </Menu>
                     </Sider>
+
                     {show ?         
                     <CardGenerator list = {card_data}
                     /> 
                     :''}
+                    {showModal?
+                    <Info_form />
+                    :''}
+                    {showInfoModal?
+                    <Checkout_form 
+                     service_1_id={store.flower_indicator}
+                     service_2_id={store.location_indicator}
+                     service_3_id={store.photo_indicator}
+                    />
+                    :''}
+
                     <Content style={{ padding: "0 24px", minHeight: 280 }}></Content>
                 </Layout>
             </Content>

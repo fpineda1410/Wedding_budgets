@@ -73,7 +73,10 @@ export const LoginForm =()=>  {
             .then(response => response.json())
             .then(data => initial_favorites=data);
 
-        console.log("Favorites are"+initial_favorites[0]);
+        initial_favorites.map((item)=>{
+            actions.update_local_budget_data(item)
+        })
+        
     }
 
     const onFinish = (values) => {

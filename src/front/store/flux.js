@@ -2,13 +2,13 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-blue-damselfly-1ln0k4xd.ws-us03.gitpod.io/";
+let global_url = "https://3001-brown-gibbon-3ki23lbn.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-blue-damselfly-1ln0k4xd.ws-us03.gitpod.io/",
+            global_url:"https://3001-brown-gibbon-3ki23lbn.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
@@ -99,15 +99,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 if (element.category=="Flores"){
                     setStore({flower_indicator:element.id})
-                    setStore({flower_provider:element.name})
+                    if (element.name){
+                        setStore({flower_provider:element.name})
+                    }else{
+                        setStore({flower_provider:element.provider})
+                    }
                 }
                 if (element.category=="Salon y comida"){
                     setStore({location_indicator:element.id})
-                    setStore({location_provider:element.name})
+                    if (element.name){
+                        setStore({location_provider:element.name})
+                    }else{
+                        setStore({location_provider:element.provider})
+                    }
                 }
                 if (element.category=="Fotografia"){
                     setStore({photo_indicator:element.id})
-                    setStore({photo_provider:element.name})
+                    if (element.name){
+                        setStore({photo_provider:element.name})
+                    }else{
+                        setStore({photo_provider:element.provider})
+                    }
                 }
             },
 
