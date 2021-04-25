@@ -87,326 +87,373 @@ def update_favorites_lists(payload_from_request, current_user_id):
         return True
 
 def post_listservice1():
-    listserv = [
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 750,
-            "provider": "Floristeria de Costa Rica PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Floristeria de Costa Rica PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1500,
-            "provider": "Floristeria de Costa Rica PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Flores Gala PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1500,
-            "provider": "Flores Gala PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 2000,
-            "provider": "Flores Gala PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 420,
-            "provider": "Juno Flowers PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 630,
-            "provider": "Juno Flowers PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1110,
-            "provider": "Juno Flowers PAX 3"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 500,
-            "provider": "Nandallo PAX 1"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 750,
-            "provider": "Nandallo PAX 2"
-        },
-        {
-            "category": "Flores",
-            "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
-            "phone": "N/A",
-            "price": 1000,
-            "provider": "Nandallo PAX 3"
-        }]
-    for i in range(len(listserv)):
-        body = listserv[i]
-        if body is None:
-            return "The request body is null", 400
-        if 'category' not in body:
-            return "You need to specify the category", 400
-        if 'provider' not in body:
-            return "You need to specify the provider", 400
-        if 'description' not in body:
-            return "You need to specify the description", 400
-        if 'phone' not in body:
-            return "You need to specify the phone", 400
-        if 'price' not in body:
-            return "You need to specify the price", 400
-        service = Service1()
-        service.category = body['category']
-        service.description = body['description']
-        service.provider = body['provider']
-        service.phone = body['phone']
-        service.price = body['price']
-        db.session.add(service)  # agrega un servicio a la base de datos
-        db.session.commit()  # guarda los cambios
+    list_test = Service1.getAllService()
+    if len(list_test) == 0:        
+        listserv = [
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 750,
+                "provider": "Floristeria de Costa Rica Paq.1",
+                "url": "https://cdn.shopify.com/s/files/1/0445/3692/2277/products/Arreglorosarosacaja22.500_540x.jpg?v=1595985154"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1000,
+                "provider": "Floristeria de Costa Rica Paq.2",
+                "url": "https://cdn.shopify.com/s/files/1/0445/3692/2277/products/ArreglocajaRosarosada22.500_1024x1024@2x.jpg?v=1595901004"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1500,
+                "provider": "Floristeria de Costa Rica Paq.3",
+                "url": "https://cdn.shopify.com/s/files/1/0445/3692/2277/products/PicsArt_03-07-10.22.23_720x.jpg?v=1615348879"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1000,
+                "provider": "Flores Gala Paq.1",
+                "url": "https://floresgala.com/wp-content/uploads/2018/06/DBFG-0008.jpg"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1500,
+                "provider": "Flores Gala Paq.2",
+                "url": "https://floresgala.com/wp-content/uploads/2018/06/DBFG-0004.jpg"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 2000,
+                "provider": "Flores Gala Paq.3",
+                "url": "https://floresgala.com/wp-content/uploads/2018/06/DBFG-0009.jpg"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 420,
+                "provider": "Juno Flowers Paq.1",
+                "url": "https://cdn.shopify.com/s/files/1/0268/6595/8935/products/20200811_111957-02_8debca13-0b9e-423f-ae3c-b4214e3c7acc_720x.jpg?v=1605909434"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 630,
+                "provider": "Juno Flowers Paq.2",
+                "url": "https://cdn.shopify.com/s/files/1/0268/6595/8935/products/20201110_081340-02-01_360x.jpg?v=1605834915"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1110,
+                "provider": "Juno Flowers Paq.3",
+                "url": "https://cdn.shopify.com/s/files/1/0268/6595/8935/products/20201116_085559-01_360x.jpg?v=1605834549"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 10 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 500,
+                "provider": "Nandallo Paq.1",
+                "url": "https://nandallo.com/wp-content/uploads/2017/09/18.png"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 15 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 750,
+                "provider": "Nandallo Paq.2",
+                "url": "https://nandallo.com/wp-content/uploads/2017/09/16.png"
+            },
+            {
+                "category": "Flores",
+                "description": "Boquette, botonier, 20 centros de mesa, decoracion de iglesia",
+                "phone": "N/A",
+                "price": 1000,
+                "provider": "Nandallo Paq.3",
+                "url": "https://nandallo.com/wp-content/uploads/2017/09/15.png"
+            }]
+        for i in range(len(listserv)):
+            body = listserv[i]
+            if body is None:
+                return "The request body is null", 400
+            if 'category' not in body:
+                return "You need to specify the category", 400
+            if 'provider' not in body:
+                return "You need to specify the provider", 400
+            if 'description' not in body:
+                return "You need to specify the description", 400
+            if 'phone' not in body:
+                return "You need to specify the phone", 400
+            if 'url' not in body:
+                return "You need to specify the url", 400
+            service = Service1()
+            service.category = body['category']
+            service.description = body['description']
+            service.provider = body['provider']
+            service.phone = body['phone']
+            service.price = body['price']
+            service.url = body['url']
+            db.session.add(service)  # agrega un servicio a la base de datos
+            db.session.commit()  # guarda los cambios
 
 def post_listservice2():
-    listserv = [{
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
-            "phone": "N/A", 
-            "price": 3150, 
-            "provider": "Hotel Herradura PAX 1"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
-            "phone": "N/A", 
-            "price": 6300, 
-            "provider": "Hotel Herradura PAX 2"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
-            "phone": "N/A", 
-            "price": 9450,
-            "provider": "Hotel Herradura PAX 3"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
-            "phone": "N/A", 
-            "price": 3550,
-            "provider": "Sheraton Escazu PAX 1"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
-            "phone": "N/A", 
-            "price": 7100,
-            "provider": "Sheraton Escazu PAX 2"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
-            "phone": "N/A", 
-            "price": 10650,
-            "provider": "Sheraton Escazu PAX 3"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
-            "phone": "N/A", 
-            "price": 3500,
-            "provider": "Occidental Papagayo Resort PAX 1"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
-            "phone": "N/A", 
-            "price": 7000,
-            "provider": "Occidental Papagayo Resort PAX 2"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
-            "phone": "N/A", 
-            "price": 10500,
-            "provider": "Occidental Papagayo Resort PAX 3"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
-            "phone": "N/A", 
-            "price": 3450,
-            "provider": "Swiss Travel PAX 1"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
-            "phone": "N/A", 
-            "price": 6900,
-            "provider": "Swiss Travel PAX 2"
-        },
-        {
-            "category": "Salon y comida", 
-            "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
-            "phone": "N/A", 
-            "price": 10350,
-            "provider": "Swiss Travel PAX 3"
-        }]
-    for i in range(len(listserv)):
-        body = listserv[i]
-        if body is None:
-            return "The request body is null", 400
-        if 'category' not in body:
-            return "You need to specify the category", 400
-        if 'provider' not in body:
-            return "You need to specify the provider", 400
-        if 'description' not in body:
-            return "You need to specify the description", 400
-        if 'phone' not in body:
-            return "You need to specify the phone", 400
-        if 'price' not in body:
-            return "You need to specify the price", 400
-        service = Service2()
-        service.category = body['category']
-        service.description = body['description']
-        service.provider = body['provider']
-        service.phone = body['phone']
-        service.price = body['price']
-        db.session.add(service)  # agrega un servicio a la base de datos
-        db.session.commit()  # guarda los cambios
+    list_test = Service2.getAllService()
+    if len(list_test) == 0:
+        listserv = [{
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+                "phone": "N/A", 
+                "price": 3150, 
+                "provider": "Hotel Herradura Paq.1",
+                "url": "https://s.ineventos.com/cr/2015/10/116494/hotel-wyndham-san-jose-herradura-178709-i-640w.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+                "phone": "N/A", 
+                "price": 6300, 
+                "provider": "Hotel Herradura Paq.2",
+                "url": "https://revistasumma.com/wp-content/uploads/2017/04/unnamed-3-2.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+                "phone": "N/A", 
+                "price": 9450,
+                "provider": "Hotel Herradura Paq.3",
+                "url": "https://livingandtravel.com.mx/wp-content/uploads/2018/01/OCV-aguascalientes.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+                "phone": "N/A", 
+                "price": 3550,
+                "provider": "Sheraton Escazu Paq.1",
+                "url": "https://cdnh.octanio.com/hotel-Sheraton-San-Jose-Costa-Rica-FG800_134320_15.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+                "phone": "N/A", 
+                "price": 7100,
+                "provider": "Sheraton Escazu Paq.2",
+                "url": "https://d2poxrheyfxwbo.cloudfront.net/resize/780x500/filters:quality(65):max_age(2604800)/s3/hotel/905a63bb-0a32-4442-abd4-db9ada27c361"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+                "phone": "N/A", 
+                "price": 10650,
+                "provider": "Sheraton Escazu Paq.3",
+                "url": "https://d2poxrheyfxwbo.cloudfront.net/resize/780x500/filters:quality(65):max_age(2604800)/s3/hotel/15ab5afa-43aa-4538-8cea-9b1b8e8ab597"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+                "phone": "N/A", 
+                "price": 3500,
+                "provider": "Occidental Papagayo Resort Paq.1",
+                "url": "https://static.barcelo.com/content/dam/bhg/master/es/hoteles/costa-rica/golfo-papagayo/occidental-papagayo-adults-only/gastronomia/OPAP_GAST_11.jpg.bhgimg.square1100.jpg/1604612609735.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+                "phone": "N/A", 
+                "price": 7000,
+                "provider": "Occidental Papagayo Resort Paq.2",
+                "url": "https://www.oyster.com/wp-content/uploads/sites/35/2019/05/buffet-v15200549-1440-1024x683.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+                "phone": "N/A", 
+                "price": 10500,
+                "provider": "Occidental Papagayo Resort Paq.3",
+                "url": "https://static.barcelo.com/content/dam/bhg/master/es/hoteles/costa-rica/golfo-papagayo/occidental-papagayo-adults-only/gastronomia/OPAP_GAST_12.jpg.bhgimg.square1100.jpg/1604612521691.jpg"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 50 personas",  
+                "phone": "N/A", 
+                "price": 3450,
+                "provider": "Swiss Travel Paq.1",
+                "url": "https://lh3.googleusercontent.com/proxy/cCaZ8Ffip5YTBDWr5KLNLCw-qEqAD6iKYQunivBpB8kp9Z-A_l9Q1iUy_qWe5HJoQEljabjQ3ONa2xyvs7lhMhfK4IY6chDqm29rHc4QYvLtglHuzD0Cw1FODzs"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 100 personas",  
+                "phone": "N/A", 
+                "price": 6900,
+                "provider": "Swiss Travel Paq.2",
+                "url": "https://lh3.googleusercontent.com/proxy/-sLs57Geqa4iuq4PW9XX00sJbA4G4NhnXUYneHuUqrrSHQXVMB0-cSJT9VlBvDgY0Ss4Uz4QEKj9ZhZS3AbuUrO5hSQthqsEHhOvd0hiO3KuVgdPvi9F5Omi_YX1FnAFfTenbUTOaw0"
+            },
+            {
+                "category": "Salon y comida", 
+                "description": "Incluye desayuno, almuerzo y cena (con bebida) para 150 personas",  
+                "phone": "N/A", 
+                "price": 10350,
+                "provider": "Swiss Travel Paq.3",
+                "url": "https://lh3.googleusercontent.com/proxy/EbF473YIzWb4JPPbqRoas0rD4jycncHrpNYWJKigejIQvPAUIQOOuIYc3Fq8EbwMcVOGZKQllz14X0c81k5aNfQtf6TgloBaO9mrmE03jwZsAMdU4dUBI3Hk"
+            }]
+        for i in range(len(listserv)):
+            body = listserv[i]
+            if body is None:
+                return "The request body is null", 400
+            if 'category' not in body:
+                return "You need to specify the category", 400
+            if 'provider' not in body:
+                return "You need to specify the provider", 400
+            if 'description' not in body:
+                return "You need to specify the description", 400
+            if 'phone' not in body:
+                return "You need to specify the phone", 400
+            if 'url' not in body:
+                return "You need to specify the url", 400
+            service = Service2()
+            service.category = body['category']
+            service.description = body['description']
+            service.provider = body['provider']
+            service.phone = body['phone']
+            service.price = body['price']
+            service.url = body['url']
+            db.session.add(service)  # agrega un servicio a la base de datos
+            db.session.commit()  # guarda los cambios
 
 def post_listservice3():
-    listserv = [{
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (50 unidades)",  
-            "phone": "N/A", 
-            "price": 1200, 
-            "provider": "Gabriel Anta PAX 1"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (100 unidades)",  
-            "phone": "N/A", 
-            "price": 1500,
-            "provider": "Gabriel Anta PAX 2"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (150 unidades)",  
-            "phone": "N/A", 
-            "price": 1750,
-            "provider": "Gabriel Anta PAX 3"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (50 unidades)",  
-            "phone": "N/A", 
-            "price": 1000,
-            "provider": "Douglas Cedeño PAX 1"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (100 unidades)",  
-            "phone": "N/A", 
-            "price": 1500,
-            "provider": "Douglas Cedeño PAX 2"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (150 unidades)",  
-            "phone": "N/A", 
-            "price": 2000,
-            "provider": "Douglas Cedeño PAX 3"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (50 unidades)",  
-            "phone": "N/A", 
-            "price": 1000,
-            "provider": "Raw Shoots PAX 1"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (100 unidades)",  
-            "phone": "N/A", 
-            "price": 1250,
-            "provider": "Raw Shoots PAX 2"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (150 unidades)",  
-            "phone": "N/A", 
-            "price": 1500,
-            "provider": "Raw Shoots PAX 3"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (50 unidades)",  
-            "phone": "N/A", 
-            "price": 1500,
-            "provider": "Geoff Photography PAX 1"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (100 unidades)",  
-            "phone": "N/A", 
-            "price": 1750,
-            "provider": "Geoff Photography PAX 2"
-        },
-        {
-            "category": "Fotografia", 
-            "description": "Fotografias, memoria digital y video (150 unidades)",  
-            "phone": "N/A", 
-            "price": 2000,
-            "provider": "Geoff Photography PAX 3"
-        }]
-    for i in range(len(listserv)):
-        body = listserv[i]
-        if body is None:
-            return "The request body is null", 400
-        if 'category' not in body:
-            return "You need to specify the category", 400
-        if 'provider' not in body:
-            return "You need to specify the provider", 400
-        if 'description' not in body:
-            return "You need to specify the description", 400
-        if 'phone' not in body:
-            return "You need to specify the phone", 400
-        if 'price' not in body:
-            return "You need to specify the price", 400
-        service = Service3()
-        service.category = body['category']
-        service.description = body['description']
-        service.provider = body['provider']
-        service.phone = body['phone']
-        service.price = body['price']
-        db.session.add(service)  # agrega un servicio a la base de datos
-        db.session.commit()  # guarda los cambios
+    list_test = Service3.getAllService()
+    if len(list_test) == 0:
+        listserv = [{
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (50 unidades)",  
+                "phone": "N/A", 
+                "price": 1200, 
+                "provider": "Gabriel Anta Paq.1",
+                "url": "https://gabrielanta.com/wp-content/uploads/2016/09/01-IMG_0804-1.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (100 unidades)",  
+                "phone": "N/A", 
+                "price": 1500,
+                "provider": "Gabriel Anta Paq.2",
+                "url": "https://gabrielanta.com/wp-content/uploads/2017/02/bodas-en-cahuita-puerto-viejo.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (150 unidades)",  
+                "phone": "N/A", 
+                "price": 1750,
+                "provider": "Gabriel Anta Paq.3",
+                "url": "https://gabrielanta.com/wp-content/uploads/2016/09/fotografo-bodas-matrimonio-puerto-viejo-punta-uva-costa-rica-02-1024x767.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (50 unidades)",  
+                "phone": "N/A", 
+                "price": 1000,
+                "provider": "Douglas Cedeño Paq.1",
+                "url": "https://www.douglascedeno.com/wp-content/uploads/2021/02/fotografos-de-bodas-costa-rica-decoracion-para-bodas-salon-de-eventos-costa-rica-bodas-costa-rica-paquetes-de-boda-economicos-costa-rica-pictures-91.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (100 unidades)",  
+                "phone": "N/A", 
+                "price": 1500,
+                "provider": "Douglas Cedeño Paq.2",
+                "url": "https://www.douglascedeno.com/wp-content/uploads/2021/02/Bodas-marriott-costa-rica-fotografo-de-bodas-costa-rica-fotografo-profesional-pictures-19.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (150 unidades)",  
+                "phone": "N/A", 
+                "price": 2000,
+                "provider": "Douglas Cedeño Paq.3",
+                "url": "https://www.douglascedeno.com/wp-content/uploads/2021/02/fotografos-de-bodas-costa-rica-decoracion-para-bodas-salon-de-eventos-costa-rica-bodas-costa-rica-paquetes-de-boda-economicos-costa-rica-pictures-85-1.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (50 unidades)",  
+                "phone": "N/A", 
+                "price": 1000,
+                "provider": "Raw Shoots Paq.1",
+                "url": "https://www.rawshoots.com/wp-content/uploads/2020/02/WEB-566-e1585708060883-1238x696.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (100 unidades)",  
+                "phone": "N/A", 
+                "price": 1250,
+                "provider": "Raw Shoots Paq.2",
+                "url": "https://www.rawshoots.com/wp-content/uploads/2020/02/WEB-285-3-1238x884.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (150 unidades)",  
+                "phone": "N/A", 
+                "price": 1500,
+                "provider": "Raw Shoots Paq.3",
+                "url": "https://www.rawshoots.com/wp-content/uploads/2020/04/SNEAKPEEK_EM-30-1238x825.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (50 unidades)",  
+                "phone": "N/A", 
+                "price": 1500,
+                "provider": "Geoff Photography Paq.1",
+                "url": "https://s.ineventos.com/cr/2017/07/121569/geoffphotography-235919-i-640w.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (100 unidades)",  
+                "phone": "N/A", 
+                "price": 1750,
+                "provider": "Geoff Photography Paq.2",
+                "url": "https://s.ineventos.com/cr/2017/07/121569/geoffphotography-235080-i-640w.jpg"
+            },
+            {
+                "category": "Fotografia", 
+                "description": "Fotografias, memoria digital y video (150 unidades)",  
+                "phone": "N/A", 
+                "price": 2000,
+                "provider": "Geoff Photography Paq.3",
+                "url": "https://s.ineventos.com/cr/2017/07/121569/geoffphotography-235921-i-1080w.jpg"
+            }]
+        for i in range(len(listserv)):
+            body = listserv[i]
+            if body is None:
+                return "The request body is null", 400
+            if 'category' not in body:
+                return "You need to specify the category", 400
+            if 'provider' not in body:
+                return "You need to specify the provider", 400
+            if 'description' not in body:
+                return "You need to specify the description", 400
+            if 'phone' not in body:
+                return "You need to specify the phone", 400
+            if 'price' not in body:
+                return "You need to specify the price", 400
+            if 'url' not in body:
+                return "You need to specify the url", 400
+            service = Service3()
+            service.category = body['category']
+            service.description = body['description']
+            service.provider = body['provider']
+            service.phone = body['phone']
+            service.price = body['price']
+            service.url = body['url']
+            db.session.add(service)  # agrega un servicio a la base de datos
+            db.session.commit()  # guarda los cambios
