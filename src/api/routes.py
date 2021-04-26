@@ -127,7 +127,8 @@ def return_password():
     selected_user = User.query.filter_by(email=email).first()
     try:
         email = selected_user.email
-        return jsonify("user registered"), 200
+        password =selected_user.password
+        return jsonify(email,password), 200
     except:
         return jsonify({"msg": "The email does not exists in the database"}), 200
 
