@@ -12,7 +12,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
-# from special_utilities.initialLoad import initial_loader
+from .special_utilities.email_sender import email_sender
 from .special_utilities.payload_handlers import get_merged_lists, update_favorites_lists, post_listservice1, post_listservice2, post_listservice3 
 
 from datetime import timedelta
@@ -128,7 +128,9 @@ def return_password():
     try:
         email = selected_user.email
         password =selected_user.password
-        return jsonify(email,password), 200
+        email_sender(email,password)
+        return jsonify("email sent"), 200
+        
     except:
         return jsonify({"msg": "The email does not exists in the database"}), 200
 
