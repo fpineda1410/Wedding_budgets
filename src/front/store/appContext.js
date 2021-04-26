@@ -24,6 +24,7 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
             function main_load () {
                 state.actions.get_services_data()
+				state.actions.getCurreciesInformations()
 
             } 
             main_load();
