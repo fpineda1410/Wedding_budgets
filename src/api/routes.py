@@ -116,6 +116,20 @@ def update_budget_sm():
     return jsonify(currentBudgetList), 200
     # return jsonify("Succesfully updated databases"), 200
 
+@api.route("/return-password", methods=['POST'])
+def return_password():
+    body = request.get_json()
+    if body is None:
+        return "The request body is null", 400
+    if 'email' not in body:
+        return "You need to specify the email", 400
+    email = body['email']
+    selected_user = User.query.filter_by(email=email).first()
+    try:
+        password = selected_user.password
+        return jsonify({"password recovery": password}), 200
+    except:
+        return jsonify({"msg": "The email does not exists in the database"}), 200
 
 #!----Just use for debugging purposes
 @api.route("/user_identity", methods=["GET"])
