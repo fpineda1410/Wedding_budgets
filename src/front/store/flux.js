@@ -2,17 +2,21 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-brown-gibbon-3ki23lbn.ws-us03.gitpod.io/";
+let global_url = "https://3001-black-bison-1vgmzvnz.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-brown-gibbon-3ki23lbn.ws-us03.gitpod.io/",
+            global_url:"https://3001-black-bison-1vgmzvnz.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
             services_data:[],
+            freeAPIKey : '6eb74eb3f0325b10d40d',
+            USD_api:'',
+            CRC_api:'',
+            USDvsCRC:'',
             //locations sorted data
             herradura_data:[],
             swiss_travel_data:[],
@@ -59,6 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 let login_status;
                 console.log(username,password);
 				const store = getStore();
+                
 				const requestOptions = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -271,13 +276,29 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log(store.geoff_photography_data)
                     }
 
+            },
+            getCurreciesInformations: async () => {
+                    const store= getStore();
+                    let api_info;
+                    fetch('http://api.exchangeratesapi.io/v1/latest?access_key=4240e58268baa587b51dbc673750119d&symbols=USD,AUD,CAD,PLN,CRC')
+                    .then(Response => Response.json()).then(data => {
+                        console.log(data);
+                        setStore({USD_api:data.rates.USD});
+                        setStore({CRC_api:data.rates.CRC});
+                        setStore({USDvsCRC:store.CRC_api/store.USD_api})
+                        console.log(store.USDvsCRC);
+
+                        
+                    })
+                    
+                }
             }
 
 			}
 
     };
     
-    }
+    
 
 
 export default getState;

@@ -22,7 +22,7 @@ function CardGenerator ({ list,type })  {
                     hoverable
 					key={item.id}
 					style={{ width: 250 }}
-					cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+					cover={<img alt="example" src={item.url} />}
 					actions={[
 						<HeartFilled
 							key={item.id}
@@ -36,13 +36,14 @@ function CardGenerator ({ list,type })  {
 					]}>
 
 					<Meta
-						avatar={<Avatar src="https://www.policymed.com/wp-content/uploads/2013/04/6a00e5520572bb8834017c3875ac22970b.jpg" />}
+						avatar={<Avatar src="https://images.vexels.com/media/users/3/137321/isolated/preview/72838e83cb97970f18dcd02d7965c0ed-heart-logo-couple-by-vexels.png" />}
 						title="Proovedor"
 						description=""
 					/>
 
                     <p>{item.provider}</p>
                     <p><strong>Precio:</strong>${item.price}</p>
+                    <p><strong>Precio aprox. colones:</strong>Colones {Math.round(parseInt(item.price)*store.USDvsCRC)}</p>
 				</Card>
 			</Col>
 		));

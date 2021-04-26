@@ -10,6 +10,7 @@ import 'rc-banner-anim/assets/index.css';
 import Wedding from '../resources/wedding.svg'
 
 const BgElement = Wedding;
+
 class Banner extends React.PureComponent {
   render() {
     const { ...props } = this.props;
