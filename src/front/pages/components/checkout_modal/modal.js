@@ -29,7 +29,11 @@ function Checkout_form ({service_1_id,service_2_id,service_3_id}) {
         title="Confirmar Presupuesto"
         centered
         visible={visible}
-        onOk={() => setVisible(false)}
+        onOk={() => {
+          setVisible(false);
+          actions.budget_array_assignment();
+          actions.updateBudget(store.updated_budget_array);
+        }}
         onCancel={() => setVisible(false)}
         width={1000}
       >

@@ -2,13 +2,12 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-let global_url = "https://3001-black-bison-1vgmzvnz.ws-us03.gitpod.io/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-black-bison-1vgmzvnz.ws-us03.gitpod.io/",
+            global_url:"https://3001-green-goldfish-0kxl79pg.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
@@ -70,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({ username: username, password: password })
 				};
 
-				const result =await fetch(global_url + "api/login", requestOptions)
+				const result =await fetch(store.global_url + "api/login", requestOptions)
 					        .then(response => login_status=response.status)
                             .then(data =>  temp_token=data.access_token);
                 console.log(temp_token);
@@ -90,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						Authorization: "Bearer " + store.bearer_token
 					}
 				};
-				await fetch(global_url + "api/get-budget", requestOptions_budget)
+				await fetch(store.global_url + "api/get-budget", requestOptions_budget)
 					.then(response => response.json())
 					.then(data => setStore({budget: data}));
             },
@@ -128,16 +127,33 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
-			updateBudget: async updated_budget_array => {
+            budget_array_assignment: () => {
+                const store = getStore();
+                let temp_updated_budget_array=[0,0,0];
 
-				const urlAPI = global_url + "api/update-budget";
+                if (store.flower_indicator){
+                    temp_updated_budget_array[0]=parseInt(store.flower_indicator);
+                }
+                if (store.location_indicator){
+                    temp_updated_budget_array[1]=parseInt(store.location_indicator);
+                }
+                if (store.photo_indicator){
+                    temp_updated_budget_array[2]=parseInt(store.photo_indicator);
+                }
+                setStore({updated_budget_array:temp_updated_budget_array});
+                console.log(store.updated_budget_array)
+            },
+
+			updateBudget: async updated_budget_array => {
+                const store = getStore();
+				const urlAPI = store.global_url + "api/update-budget";
 				const updateOptions_budget = {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: "Bearer " + store.bearer_token.access_token
+						Authorization: "Bearer " + store.bearer_token
 					},
-					body: JSON.stringify([{service1_id:updated_budget_array[0],service2_id:updated_budget_array[1],service3_id:updated_budget_budget[2]}])
+					body: JSON.stringify([{service1_id:updated_budget_array[0],service2_id:updated_budget_array[1],service3_id:updated_budget_array[2]}])
 				};
 
 				const result = await fetch(urlAPI,updateOptions_budget)
@@ -145,9 +161,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log(data));
 				
 			},
+
 			get_services_data: async () => {
                 const store = getStore();
-				const urlAPI = global_url + "api/allserv";
+				const urlAPI = store.global_url + "api/allserv";
 				const get_services_data= {
 					method: "GET",
 					headers: {
@@ -186,8 +203,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                             flores_nandallo.push(item);
                         }
                         
-                    });
-                        
+                    });   
                         setStore({flores_cr_data:flores_cr});
                         setStore({flores_gala_data:flores_gala});
                         setStore({flores_juno_data:flores_juno});
@@ -222,10 +238,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         if((index>8)&&(index<=11)){
                             swiss_travel.push(item);
                         }
-                        
-                    
                     });
-                        
                         setStore({herradura_data:herradura});
                         setStore({sheraton_data:sheraton});
                         setStore({papagayo_data:papagayo});
@@ -248,7 +261,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //flower sorting
                 if (store.services_data.photo){
                     store.services_data.photo.map((item,index)=>{
-                        
                         if(index<=2){
                             gabriel_anta.push(item);
                         }
@@ -261,10 +273,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         if((index>8)&&(index<=11)){
                             geoff_photo.push(item);
                         }
-                        
-                    
                     });
-                        
                         setStore({gabriel_anta_data:gabriel_anta});
                         setStore({douglas_cedeno_data:douglas_cedeno});
                         setStore({raw_shoots_data:raw_shoots});
@@ -291,14 +300,30 @@ const getState = ({ getStore, getActions, setStore }) => {
                         
                     })
                     
-                }
+            },
+            email_recovery_function: async email =>{
+
+                const store = getStore();
+                let user_data;
+				const urlAPI = store.global_url + "api/return-password";
+				const get_user_data= {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+                    body: JSON.stringify({email:email})
+				};
+				const result = await fetch(urlAPI,get_user_data)
+					.then(res => res.json())
+                    .then(data => user_data = data);
+
+            }
+            
             }
 
 			}
 
     };
     
-    
-
 
 export default getState;

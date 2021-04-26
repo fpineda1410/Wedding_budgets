@@ -159,10 +159,11 @@ export const LoginForm =()=>  {
                 
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                    LogIn
-                    </Button>
+                   
                 </Form.Item>
+                <Button type="primary" htmlType="submit">
+                    LogIn
+                </Button>
         </Form>
 
         {login_redirect?

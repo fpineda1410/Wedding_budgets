@@ -139,7 +139,7 @@ export const RegisterForm =()=>  {
                     rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Porfavor coloque su contraseña!',
                     },
                     ]}
                 >

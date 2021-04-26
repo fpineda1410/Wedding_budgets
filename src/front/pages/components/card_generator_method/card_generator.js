@@ -17,7 +17,7 @@ import { Context } from "../../../store/appContext.js";
 function CardGenerator ({ list,type })  {
     const {store, actions} =useContext(Context);
 		return list.map((item, index) => (
-			<Col className="gutter-row" span={4} style={{ margin: "5vh" }} key={index}>
+			<Col className="gutter-row" span={4} style={{ margin: "8vh" }} key={index}>
 				<Card
                     hoverable
 					key={item.id}
