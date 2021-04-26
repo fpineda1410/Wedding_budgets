@@ -1,51 +1,119 @@
-import React,{useContext} from "react";
+import React from 'react';
+import { Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import QueueAnim from 'rc-queue-anim';
+import TweenOne, { TweenOneGroup } from 'rc-tween-one';
+import BannerAnim, { Element } from 'rc-banner-anim';
+import { isImg } from '../supplementary/utils';
+import 'rc-banner-anim/assets/index.css';
 
-import "antd/dist/antd.css";
-import { Layout, Menu, Row, Col, Typography, Card, Avatar} from "antd";
+import Wedding from '../resources/wedding.svg'
 
-const { Meta } = Card;
+const BgElement = Wedding;
 
-import {
-	EllipsisOutlined,
-	HeartFilled
-} from "@ant-design/icons";
+class Banner extends React.PureComponent {
+  render() {
+    const { ...props } = this.props;
+    const { dataSource, isMobile } = props;
+    delete props.dataSource;
+    delete props.isMobile;
+    const childrenToRender = dataSource.BannerAnim.children.map((item, i) => {
+      const elem = item.BannerElement;
+      const elemClassName = elem.className;
+      delete elem.className;
+      const bg = item.bg;
+      const textWrapper = item.textWrapper;
+      const title = item.title;
+      const content = item.content;
+      const button = item.button;
+      const page = item.page;
+      const follow = !isMobile
+        ? {
+            delay: 1000,
+            minMove: 0.1,
+            data: [
+              {
+                id: `bg${i}`,
+                value: 15,
+                type: 'x',
+              },
+              { id: `wrapperBlock${i}`, value: -15, type: 'x' },
+            ],
+          }
+        : null;
+      return (
+        <Element
+          key={i.toString()}
+          followParallax={follow}
+          {...elem}
+          prefixCls={elemClassName}
+        >
+          <QueueAnim
+              type={['bottom', 'top']}
+              delay={200}
+              key="text"
+              {...textWrapper}
+              id={`wrapperBlock${i}`}
+            >
+                 {/* <Wedding /> */}
+            </QueueAnim>
+         
+          <BgElement key="bg" {...bg} id={`bg${i}`} />
+          <div {...page}>
+            <QueueAnim
+              type={['bottom', 'top']}
+              delay={200}
+              key="text"
+              {...textWrapper}
+              id={`wrapperBlock${i}`}
+            >
+              <div key="logo" {...title}>
+                {typeof title.children === 'string' &&
+                title.children.match(isImg) ? (
+                  <img src={title.children} width="100%" alt="img" />
+                ) : (
+                  title.children
+                )}
+              </div>
+              <div key="content" {...content}>
+                {content.children}
+              </div>
+              <Button type="ghost" key="button" {...button}>
+                {button.children}
+              </Button>
+            </QueueAnim>
+          </div>
+        </Element>
+      );
+    });
+    return (
+      <div {...props} {...dataSource.wrapper}>
+        <TweenOneGroup
+          key="bannerGroup"
+          enter={{ opacity: 0, type: 'from' }}
+          leave={{ opacity: 0 }}
+          component=""
+        >
+          <BannerAnim key="BannerAnim" {...dataSource.BannerAnim}>
+            {childrenToRender}
+          </BannerAnim>
+        </TweenOneGroup>
+        <TweenOne
+          animation={{
+            y: '-=20',
+            yoyo: true,
+            repeat: -1,
+            duration: 1000,
+          }}
+          className="banner2-icon"
+          style={{ bottom: 40 }}
+          key="icon"
+        >
+          <DownOutlined />
+        </TweenOne>
+      </div>
+    );
+  }
+}
 
-import { Link } from "react-router-dom";
-
-import { Context } from "../../../store/appContext.js";
-
-function CardGenerator ({ list,type })  {
-    const {store, actions} =useContext(Context);
-		return list.map((item, index) => (
-			<Col className="gutter-row" span={4} style={{ margin: "5vh" }} key={index}>
-				<Card
-                    hoverable
-					key={item.id}
-					style={{ width: 250 }}
-					cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-					actions={[
-						<HeartFilled
-							key={item.id}
-							onClick={() =>
-								{actions.update_local_budget_data({ category: item.category , id: item.id, name: item.provider })}
-							}
-						/>,
-						<Link key={index} to={"/detail/1/" + index}>
-							<EllipsisOutlined key="ellipsis" />
-						</Link>
-					]}>
-
-					<Meta
-						avatar={<Avatar src="https://www.policymed.com/wp-content/uploads/2013/04/6a00e5520572bb8834017c3875ac22970b.jpg" />}
-						title="Proovedor"
-						description=""
-					/>
-
-                    <p>{item.provider}</p>
-                    <p><strong>Precio:</strong>${item.price}</p>
-				</Card>
-			</Col>
-		));
-    };
-    
-    export default CardGenerator;
+export default Banner;
