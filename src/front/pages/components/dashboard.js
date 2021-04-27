@@ -211,7 +211,7 @@ if (store.bearer_token){
             </Content>
 
             <Footer style={{ textAlign: "center" }}>
-                Created by Felipe-Maykol-Eduardo & Fernando ©2021{" "}
+                Wedding Budgets. Todos los Derechos Reservados ©2021{" "}
             </Footer>
         </Layout>
     )
