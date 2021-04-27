@@ -130,7 +130,7 @@ def return_password():
         password =selected_user.password
         email_sender(email,password)
         return jsonify("email sent"), 200
-        
+
     except:
         return jsonify({"msg": "The email does not exists in the database"}), 200
 
