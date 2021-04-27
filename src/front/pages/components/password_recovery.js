@@ -125,8 +125,8 @@ export const RecoveryForm =()=>  {
 
         </Form>
 
-        {recovery_redirect?
-        <Redirect to="/dashboard"/>:''}
+        {store.recovery_redirect?
+        <Redirect to="/"/>:''}
 
         </QueueAnim>
         

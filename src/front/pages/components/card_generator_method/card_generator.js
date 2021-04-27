@@ -21,7 +21,7 @@ function CardGenerator ({ list,type })  {
 				<Card
                     hoverable
 					key={item.id}
-					style={{ width: 250 }}
+					style={{ width: 500 }}
 					cover={<img alt="example" src={item.url} />}
 					actions={[
 						<HeartFilled

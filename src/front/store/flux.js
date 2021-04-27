@@ -7,7 +7,7 @@ import { Redirect } from "react-router";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-green-goldfish-0kxl79pg.ws-us03.gitpod.io/",
+            global_url:"https://3001-teal-moth-1dwi7eav.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
@@ -37,7 +37,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             flower_provider:'',
             location_provider:'',
             photo_provider:'',
-            update_budget_array:[0,0,0]
+            update_budget_array:[0,0,0],
+            recovery_redirect:false
         },
         
 		actions: {
@@ -304,7 +305,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             email_recovery_function: async email =>{
 
                 const store = getStore();
-                let user_data;
+                let response_status;
 				const urlAPI = store.global_url + "api/return-password";
 				const get_user_data= {
 					method: "POST",
@@ -315,7 +316,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const result = await fetch(urlAPI,get_user_data)
 					.then(res => res.json())
-                    .then(data => user_data = data);
+                    .then(data => response_status=data);
+                
+                if (response_status=="email sent"){
+                    setStore({recovery_redirect:true})
+                    alert("Tu contraseña ha sido enviada a tu email!")
+                }else{
+                    alert("El correo que has insertado no esta relacionado con ninguna cuenta.")
+                }
 
             }
             

@@ -7,6 +7,8 @@ import { Redirect } from "react-router-dom";
 
 import { Context } from "../../store/appContext.js";
 
+import { Link } from "react-router-dom";
+
 let isMobile;
 
 enquireScreen((isMoving) => {
@@ -152,11 +154,11 @@ export const LoginForm =()=>  {
                         message: 'Please input your password!',
                     },
                     ]}
+                    
                 >
                     <Input.Password />
+                 
                 </Form.Item>
-
-                
 
                 <Form.Item {...tailLayout}>
                    
@@ -164,6 +166,12 @@ export const LoginForm =()=>  {
                 <Button type="primary" htmlType="submit">
                     LogIn
                 </Button>
+                <Link to="/recovery">
+                    <Button type="secondary" >
+                        Olvide mi contraseña😬
+                    </Button>
+                </Link>
+                
         </Form>
 
         {login_redirect?

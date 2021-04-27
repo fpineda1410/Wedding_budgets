@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require ("html-webpack-plugin");
-
+const Dotenv = require('dotenv-webpack');
 const path = require ("path");
 
 const port = 3000;
