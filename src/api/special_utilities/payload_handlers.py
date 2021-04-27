@@ -291,7 +291,7 @@ def post_listservice2():
                 "phone": "N/A", 
                 "price": 3450,
                 "provider": "Swiss Travel Paq.1",
-                "url": "https://lh3.googleusercontent.com/proxy/lZRsfR2wwD1h4oNWqAOni3OM367Mbp32KwLRm84To2usYti4xEATAOnueO1pR-XkKib9QFVj-DY7sTAq7dPfkwWTDMM3OrmOHU2A_TKUODA_EipxLSKihBL65GGSp9ToLeU5xctjKkI"
+                "url": "https://news.co.cr/wp-content/uploads/2018/01/EventosSol.jpg"
             },
             {
                 "category": "Salon y comida", 
@@ -299,7 +299,7 @@ def post_listservice2():
                 "phone": "N/A", 
                 "price": 6900,
                 "provider": "Swiss Travel Paq.2",
-                "url": "https://lh3.googleusercontent.com/proxy/D9FHnnADOR8Z9Yf5pnTfv6paXw6hGadn22O1vQJWByA7LWWmy8GlM1wqpsyXQ05xsYVr3Mc10dxtflTC8dkadJOw10kvyKLHO-hZZaF7pyd9KceN_iafnA5K"
+                "url": "https://s.ineventos.com/cr/2019/02/125279/eventos-del-sol-277820-i-640w.jpg"
             },
             {
                 "category": "Salon y comida", 
@@ -307,7 +307,7 @@ def post_listservice2():
                 "phone": "N/A", 
                 "price": 10350,
                 "provider": "Swiss Travel Paq.3",
-                "url": "https://lh3.googleusercontent.com/proxy/rO9SOY33Yn6uSegAVZB-zur-zbOfNO7Av6BGcyYg6l_-q5SIlOgxNRqIDcC9coOetloOhmaFYw2IiUycDJr-grvmHSYMbI7lUfUvHxpRz73k4doKj89VbnK2"
+                "url": "https://cdn.goodgallery.com/494f5df4-bfc8-449e-8830-4bd3a81c8415/t/0400/2k2g8lyq/swiss-travel-venue-1.jpg"
             }]
         for i in range(len(listserv)):
             body = listserv[i]

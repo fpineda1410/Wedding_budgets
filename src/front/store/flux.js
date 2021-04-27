@@ -7,7 +7,7 @@ import { Redirect } from "react-router";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_url:"https://3001-teal-moth-1dwi7eav.ws-us03.gitpod.io/",
+            global_url:"https://3001-violet-porpoise-y0d55bai.ws-us03.gitpod.io/",
 			bearer_token: '',
 			login: false,
             budget:[],
