@@ -31,7 +31,7 @@
     background-size: cover;
   }
   .bg0 {
-    background: url("https://zos.alipayobjects.com/rmsportal/bXNBIyzSLHaycUGDzwLG.jpg") center;
+    background: url("../resources/dashboard.svg") left;
     background-size: cover;
     height: 100%;
     width: ~"calc(100% + 100px)";
@@ -45,24 +45,25 @@
     }
   }
   .banner-user-elem .banner-user-title {
-    font-size: 22px;
+    font-size: 60px;
     top: 40%;
   }
   .banner-user-elem .banner-user-text {
     top: 40%;
+    
   }
   &-page {
     position: relative;
     top: 20%;
-    max-width: 1200px;
+    max-width: -1500px;
     margin: auto;
   }
   &-text-wrapper {
     display: inline-block;
-    font-size: 14px;
+    font-size: 20px;
     color: @template-text-color-light;
-    width: 400px;
-    text-align: left;
+    width: 600px;
+    text-align: center;
     .@{banner2}-title {
       left: 0;
       margin: auto;
@@ -75,8 +76,8 @@
       font-weight: lighter;
     }
     button {
-      border: 1px solid #fff;
-      color: #fff;
+      border: 1px solid rgb(124, 124, 124);
+      color: rgb(124, 124, 124);
       background: transparent;
       transition: background .45s @ease-in, border .45s @ease-in;
       line-height: 36px;
@@ -87,13 +88,11 @@
         transition: text-shadow .45s @ease-out;
       }
       &:hover {
-        color: #fff;
-        border-color: @primary-color;
-        background: @primary-color;
+        color: rgb(255, 255, 255);
+        border-color: #D5CDC9;
+        background: #D5CDC9;
         transition: background .45s @ease-out, border .45s @ease-out;
-        & span {
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, .35);
-        }
+        
       }
     }
   }
