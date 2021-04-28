@@ -21,7 +21,9 @@ function Info_form () {
         width={1000}
       >
         
-        <p>Numero Telefonico<strong> 666</strong></p>
+        <p>Numero Telefonico<strong>6402 5410</strong></p>
+        <p>Facebook<strong> <a href="https://www.facebook.com/Wedding-Budget-CR-101186272130279">Click aqui!</a></strong></p>
+        <p>Instagram<strong><a href="https://www.instagram.com/weddingbudgetcr/?hl=es-la">Click aqui!</a></strong></p>
         
       </Modal>
     </>

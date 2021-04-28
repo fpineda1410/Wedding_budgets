@@ -176,7 +176,7 @@ export const Footer10DataSource = {
     className: 'copyright',
     children: (
       <span>
-        <span>©2021 por Wedding Buggets. Todos los Derechos Reservados</span>
+        <span>©2021 por Wedding Budgets. Todos los Derechos Reservados</span>
       </span>
     ),
   },
