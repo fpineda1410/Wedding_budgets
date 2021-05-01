@@ -4,7 +4,7 @@ FROM gitpod/workspace-full:latest
 RUN sudo apt-get update \
  && sudo apt-get install -y postgresql postgresql-contrib \
  && sudo apt-get clean \
- && sudo rm cp-apt-get /tmp/*
+ && sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
 
 # Setup PostgreSQL server for user gitpod
 ENV PATH="$PATH:/usr/lib/postgresql/12/bin"
@@ -22,3 +22,5 @@ ENV PGDATABASE="postgres"
 # tasks from a Dockerfile. This workaround checks, on each bashrc eval, if the
 # PostgreSQL server is running, and if not starts it.
 RUN printf "\n# start PostgreSQL server.\n[[ \$(pg_ctl status | grep PID) ] || pg_start  /dev/null\n" >> ~/.bashrc
+
+RUN npm i heroku -g
