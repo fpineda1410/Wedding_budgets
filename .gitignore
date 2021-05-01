@@ -7,7 +7,7 @@
 php_errorlog
 .log
 
-migrations/*
+migrations/
 
 # do not ignore gitpod files
 !.gitpod.Dockerfile
